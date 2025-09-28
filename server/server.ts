@@ -1,76 +1,144 @@
-import express from 'express'
-import { createServer as createViteServer } from 'vite'
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const isProduction = process.env.NODE_ENV === 'production'
-const port = process.env.PORT || 8000
+import fs from "node:fs/promises";
+import path from "node:path";
+import express from "express";
+import { createServer as createViteServer } from "vite";
+import { PassThrough } from "node:stream";
 
-async function createServer() {
-  const app = express()
+const isProd = process.env.NODE_ENV === "production";
+const port = process.env.PORT || 3000;
 
-  // Create Vite server in middleware mode and configure the app type as
-  // 'custom', disabling Vite's own HTML serving logic so parent server
-  // can take control
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: 'custom'
-  })
+(async () => {
+  const app = express();
+  let vite: any;
 
-  // Don't use vite.ssrLoadModule as middleware - that's wrong
-
-  if (isProduction) {
-    // In production, serve static files
-    app.use(express.static(path.resolve(__dirname, '../dist/client')))
+  if (!isProd) {
+    // DEV: Vite middleware gives HMR + on‑the‑fly transforms
+    vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: "custom",
+    });
+    app.use(vite.middlewares);
   } else {
-    // In dev, use Vite middleware
-    app.use(vite.middlewares)
+    // PROD: Serve prebuilt client assets (HTML is still SSR injected)
+    app.use(express.static("dist/client", { index: false, maxAge: "1h" }));
   }
 
-  app.use('*', async (req, res, next) => {
-    const url = req.originalUrl
+  // Catch‑all GET for HTML navigation (no filtering yet; could refine Accept header)
+  app.get("*", async (req, res, next) => {
+    let ended = false; // Tracks if response is already finalized
+    const endOnce = (cb?: () => void) => {
+      if (ended) return;
+      ended = true;
+      cb?.();
+    };
+
+    // Method must be GET (skip POST/PUT/etc.)
+    if (req.method !== "GET") return next();
+
+    const accept = req.headers.accept || "";
+
+    // Only proceed if client explicitly wants HTML
+    if (!accept.includes("text/html")) return next();
+
+    // Skip if it looks like an asset (has extension)
+    if (/\.(?:js|mjs|ts|tsx|jsx|css|map|json|png|jpe?g|gif|svg|ico|webp|woff2?|ttf|eot)$/i.test(req.path)) {
+      return next();
+    }
+
+    // Skip internal Vite/HMR endpoints
+    if (req.path.startsWith("/@vite") || req.path.startsWith("/@id/")) {
+      return next();
+    }
+
+    // Proceed with SSR in case any of the previous checks matched
 
     try {
-      let template: string
-      let render: any
+      const url = req.originalUrl;
+      
 
-      if (isProduction) {
-        // In production, read pre-built template and render function
-        template = fs.readFileSync(
-          path.resolve(__dirname, '../dist/client/index.html'),
-          'utf-8'
-        )
-        render = (await import('../dist/server/entry-server.js')).render
-      } else {
-        // In development, always read fresh template and render
-        template = fs.readFileSync(
-          path.resolve(__dirname, '../index.html'),
-          'utf-8'
-        )
-        template = await vite.transformIndexHtml(url, template)
-        render = (await vite.ssrLoadModule('/src/app/entry-server.tsx')).render
+      // Load base template (could cache in prod)
+      let template = await fs.readFile(
+        path.resolve(isProd ? "dist/client/index.html" : "index.html"),
+        "utf-8"
+      );
+      if (!isProd) template = await vite.transformIndexHtml(url, template);
+
+      // Split template at SSR injection marker
+      const [head, tail] = template.split("<!--ssr-outlet-->");
+
+      // Dynamically load SSR entry (dev: transform, prod: bundled)
+      const mod = !isProd
+        ? await vite.ssrLoadModule("/src/app/entry-server.tsx")
+        : await import(path.resolve("dist/server/entry-server.js"));
+
+      if (typeof mod.streamRender !== "function") {
+        throw new Error("streamRender export not found in entry-server");
       }
 
-      const appHtml = await render(url)
+      const body = new PassThrough(); // Bridge from React pipeable stream to manual control
 
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml)
+      // Abort streaming if client disconnects
+      res.on("close", () => {
+        if (!ended) {
+          body.destroy();
+          endOnce();
+        }
+      });
 
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+      // Forward streamed chunks
+      body.on("data", (chunk) => {
+        if (!ended) res.write(chunk);
+      });
+
+      // When React stream ends, append tail and finish
+      body.on("end", () => {
+        endOnce(() => {
+          res.write(tail || "");
+          res.end();
+        });
+      });
+
+      // Send initial shell (improves TTFB)
+      res.status(200).setHeader("Content-Type", "text/html; charset=utf-8");
+      res.write(head || "");
+
+      // Kick off React streaming
+      mod.streamRender({
+        url,
+        onShellReady(stream: NodeJS.ReadableStream) {
+          // Shell is ready; pipe React output into PassThrough
+          stream.pipe(body);
+        },
+        onAllReady() {
+          // Placeholder: could inject dehydrated state before body ends
+        },
+        onError(err: unknown) {
+          console.error("SSR stream error:", err);
+            if (!ended) {
+              endOnce(() => {
+                res.statusCode = 500;
+                res.end(
+                  "<!doctype html><h1>SSR Error</h1><pre>" +
+                    String(err) +
+                    "</pre>"
+                );
+              });
+            }
+        },
+      });
     } catch (e: any) {
-      // If an error is caught, let Vite fix the stack trace so it maps back
-      // to your actual source code.
-      if (!isProduction) {
-        vite.ssrFixStacktrace(e)
+      if (vite && !isProd) vite.ssrFixStacktrace?.(e);
+      if (!ended) {
+        res.status(500).end("Internal Server Error");
       }
-      next(e)
     }
-  })
+  });
 
-  app.listen(port, () => {
-    console.log(`🚀 Server running at http://localhost:${port}`)
-  })
-}
+  app.listen(port, () =>
+    console.log(
+      `SSR server running at http://localhost:${port} (mode=${isProd ? "production" : "development"})`
+    )
+  );
+})();
 
-createServer()

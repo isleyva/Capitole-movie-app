@@ -1,22 +1,13 @@
-import { StrictMode } from 'react'
-import { hydrateRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import App from './App'
+import { StrictMode } from "react";
+import { hydrateRoot } from "react-dom/client";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// Create QueryClient instance
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      gcTime: 1000 * 60 * 10,   // 10 minutes (formerly cacheTime)
-    },
-  },
-})
+const queryClient = new QueryClient();
 
-// Hydrate the app
 hydrateRoot(
-  document.getElementById('root')!,
+  document.getElementById("root")!,
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -24,9 +15,6 @@ hydrateRoot(
       </BrowserRouter>
     </QueryClientProvider>
   </StrictMode>
-)
+);
 
-// Hot module replacement for development
-if (import.meta.hot) {
-  import.meta.hot.accept()
-}
+
