@@ -1,85 +1,60 @@
 // Ultra simple server-side rendering function
 
+import { renderToPipeableStream } from "react-dom/server";
 import { StrictMode } from "react";
 import { StaticRouter } from "react-router-dom/server";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { renderToString } from "react-dom/server";
+import { PassThrough } from "node:stream";
 import App from "./App";
 
-const queryClient = new QueryClient();
-
-export function render(_url: string) {
-  const html = renderToString(
-    <QueryClientProvider client={queryClient}>
-      <StrictMode>
-        <StaticRouter location={_url}>
-          <App />
-        </StaticRouter>
-      </StrictMode>
-    </QueryClientProvider>
-  );
-  return { html };
+interface RenderOptions {
+  url: string;
+  onShellReady: (stream: NodeJS.ReadableStream) => void;
+  onAllReady: () => void;
+  onError: (err: unknown) => void;
 }
 
-// import { renderToString } from 'react-dom/server'
-// import { StaticRouter } from 'react-router-dom/server'
-// import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-// import App from './App.tsx'
+export function streamRender({
+  url,
+  onShellReady,
+  onAllReady,
+  onError,
+}: RenderOptions) {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: { staleTime: 60_000, retry: false },
+    },
+  });
 
-// // Simple server-side rendering function
-// export function render(url: string) {
-//   console.log('🎬 SSR rendering:', url)
+  let didError = false;
+  const abortDelay = 15000;
 
-//   try {
-//     // Create a fresh QueryClient for each request
-//     const queryClient = new QueryClient({
-//       defaultOptions: {
-//         queries: {
-//           staleTime: 1000 * 60 * 5,
-//           gcTime: 1000 * 60 * 10,
-//           retry: false, // Don't retry on server
-//         },
-//       },
-//     })
+  const pipeable = renderToPipeableStream(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <StaticRouter location={url}>
+          <App />
+        </StaticRouter>
+      </QueryClientProvider>
+    </StrictMode>,
+    {
+      onShellReady() {
+        const body = new PassThrough();
+        pipeable.pipe(body);
+        onShellReady(body);
+      },
+      onAllReady() {
+        onAllReady();
+      },
+      onError(err) {
+        didError = true;
+        onError(err);
+      },
+    }
+  );
 
-//     // Create the React app
-//     const appHtml = renderToString(
-//       <QueryClientProvider client={queryClient}>
-//         <StaticRouter location={url}>
-//           <App />
-//         </StaticRouter>
-//       </QueryClientProvider>
-//    )
+  setTimeout(() => {
+    if (!didError) pipeable.abort();
+  }, abortDelay);
+}
 
-//     console.log('✅ SSR completed successfully')
-//     return appHtml
-//   } catch (error) {
-//     console.error('❌ SSR Error:', error)
-//     return '<div>Error rendering page</div>'
-//   }
-// }
-
-// export function render(url: string) {
-//   console.log('🎬 SSR rendering:', url)
-
-//   try {
-//     // Simple HTML for testing
-//     const appHtml = `
-//       <div id="app">
-//         <h1>Capitole Movie App</h1>
-//         <p>SSR is working! Rendering: ${url}</p>
-//         <nav>
-//           <a href="/">Home</a> |
-//           <a href="/film/123">Sample Film</a> |
-//           <a href="/wishlist">Wishlist</a>
-//         </nav>
-//       </div>
-//     `
-
-//     console.log('✅ SSR completed successfully')
-//     return appHtml
-//   } catch (error) {
-//     console.error('❌ SSR Error:', error)
-//     return '<div>Error rendering page</div>'
-//   }
-// }
