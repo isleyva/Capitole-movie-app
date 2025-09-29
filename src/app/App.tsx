@@ -1,8 +1,8 @@
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { Suspense, useCallback } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Suspense } from "react";
 
 // Import providers
-import { WishlistProvider, useWishlist } from "./providers/WishlistProvider";
+import { WishlistProvider } from "./providers/WishlistProvider";
 import { ThemeProvider } from "./providers/ThemeProvider";
 
 // Import route components (lazy loaded for code splitting)
@@ -21,51 +21,21 @@ import { Layout } from "@/shared/components";
 // Import global styles
 import "@/shared/styles/main.scss";
 
-function AppContent() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { totalMovies } = useWishlist();
-
-  const getCurrentView = useCallback((): "home" | "detail" | "wishlist" => {
-    if (location.pathname === '/') return 'home';
-    if (location.pathname === '/wishlist') return 'wishlist';
-    if (location.pathname.startsWith('/film/')) return 'detail';
-    return 'home';
-  }, [location.pathname]);
-
-  const handleHomeClick = useCallback(() => {
-    navigate('/');
-  }, [navigate]);
-
-  const handleWishListClick = useCallback(() => {
-    navigate('/wishlist');
-  }, [navigate]);
-
-  return (
-    <Layout
-      onHomeClick={handleHomeClick}
-      onWishListClick={handleWishListClick}
-      wishListCount={totalMovies}
-      currentView={getCurrentView()}
-    >
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="/" element={<HomeRoute />} />
-          <Route path="/film/:id" element={<FilmRoute />} />
-          <Route path="/wishlist" element={<WishlistRoute />} />
-          <Route path="*" element={<div>404 - Page not found</div>} />
-        </Routes>
-      </Suspense>
-    </Layout>
-  );
-}
-
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
         <WishlistProvider>
-          <AppContent />
+          <Layout>
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                <Route path="/" element={<HomeRoute />} />
+                <Route path="/film/:id" element={<FilmRoute />} />
+                <Route path="/wishlist" element={<WishlistRoute />} />
+                <Route path="*" element={<div>404 - Page not found</div>} />
+              </Routes>
+            </Suspense>
+          </Layout>
         </WishlistProvider>
       </ThemeProvider>
     </ErrorBoundary>
