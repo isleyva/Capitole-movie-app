@@ -1,0 +1,12 @@
+// Utility functions
+// =================
+
+// Convert px to rem
+@function rem($pixels) {
+  @return #{$pixels / 16}rem;
+}
+
+// Color functions
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}

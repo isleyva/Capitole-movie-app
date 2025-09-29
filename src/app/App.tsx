@@ -9,9 +9,9 @@ import { ThemeProvider } from "./providers/ThemeProvider";
 import { lazy } from "react";
 
 // Lazy load route components
-const HomeRoute = lazy(() => import("./routes/home.route").then(module => ({ default: module.HomeRoute })));
-const FilmRoute = lazy(() => import("./routes/film.route"));
-const WishlistRoute = lazy(() => import("./routes/wishlist.route"));
+const HomeRoute = lazy(() => import("@/features/home").then(module => ({ default: module.HomeRoute })));
+const FilmRoute = lazy(() => import("@/features/film").then(module => ({ default: module.FilmRoute })));
+const WishlistRoute = lazy(() => import("@/features/wishlist").then(module => ({ default: module.WishlistRoute })));
 
 // Import shared components
 import { Loading } from "@/shared/components/Loading";

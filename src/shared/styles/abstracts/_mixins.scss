@@ -1,0 +1,53 @@
+// Mixins for common patterns
+// =========================
+
+// Media query mixin
+@mixin breakpoint($size) {
+  @if $size == xs {
+    @media (min-width: #{$breakpoint-xs}) { @content; }
+  }
+  @if $size == sm {
+    @media (min-width: #{$breakpoint-sm}) { @content; }
+  }
+  @if $size == md {
+    @media (min-width: #{$breakpoint-md}) { @content; }
+  }
+  @if $size == lg {
+    @media (min-width: #{$breakpoint-lg}) { @content; }
+  }
+  @if $size == xl {
+    @media (min-width: #{$breakpoint-xl}) { @content; }
+  }
+}
+
+// Button mixin
+@mixin button-style($bg-color, $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: $transition-normal;
+  
+  &:hover {
+    background-color: darken($bg-color, 10%);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// Card mixin
+@mixin card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  transition: var(--transition-normal);
+  
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}

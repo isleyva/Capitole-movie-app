@@ -1,0 +1,39 @@
+// SCSS 7-1 Architecture Main File - Tailwind-inspired
+// ===================================================
+
+// 1. Abstracts (variables, mixins, functions)
+@import 'abstracts/variables';
+@import 'abstracts/utilities';
+
+// 2. Base (reset, typography, base styles)
+@import 'base/base';
+
+// 3. Components
+@import 'components/button';
+@import 'components/movie-carousel';
+@import 'components/movie-section';
+
+// 4. Pages
+@import 'pages/home';
+
+// 4. Application specific styles
+// Global app layout styles using design system
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: $line-height-normal;
+}
+
+// Update existing classes to use design system
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gray-50 {
+  background-color: var(--muted);
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}

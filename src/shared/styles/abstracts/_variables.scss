@@ -1,0 +1,257 @@
+// Design System Variables - Adapted from Tailwind CSS
+// ==================================================
+
+// Color System using OKLCH (Modern color space)
+// ==============================================
+
+// Light theme colors
+$background-light: oklch(1 0 0);                    // Pure white
+$foreground-light: oklch(0.145 0 0);                // Near black
+$card-light: oklch(1 0 0);                          // White
+$card-foreground-light: oklch(0.145 0 0);           // Near black
+$popover-light: oklch(1 0 0);                       // White
+$popover-foreground-light: oklch(0.145 0 0);        // Near black
+$primary-light: oklch(0.205 0 0);                   // Dark gray/black
+$primary-foreground-light: oklch(0.985 0 0);        // Off white
+$secondary-light: oklch(0.97 0 0);                  // Light gray
+$secondary-foreground-light: oklch(0.205 0 0);      // Dark gray
+$muted-light: oklch(0.97 0 0);                      // Light gray
+$muted-foreground-light: oklch(0.556 0 0);          // Medium gray
+$accent-light: oklch(0.97 0 0);                     // Light gray
+$accent-foreground-light: oklch(0.205 0 0);         // Dark gray
+$destructive-light: oklch(0.577 0.245 27.325);      // Red
+$destructive-foreground-light: oklch(0.577 0.245 27.325); // Red
+$border-light: oklch(0.922 0 0);                    // Light gray
+$input-light: oklch(0.922 0 0);                     // Light gray
+$ring-light: oklch(0.708 0 0);                      // Medium gray
+
+// Dark theme colors
+$background-dark: oklch(0.145 0 0);                 // Near black
+$foreground-dark: oklch(0.985 0 0);                 // Off white
+$card-dark: oklch(0.145 0 0);                       // Near black
+$card-foreground-dark: oklch(0.985 0 0);            // Off white
+$popover-dark: oklch(0.145 0 0);                    // Near black
+$popover-foreground-dark: oklch(0.985 0 0);         // Off white
+$primary-dark: oklch(0.985 0 0);                    // Off white
+$primary-foreground-dark: oklch(0.205 0 0);         // Dark gray
+$secondary-dark: oklch(0.269 0 0);                  // Dark gray
+$secondary-foreground-dark: oklch(0.985 0 0);       // Off white
+$muted-dark: oklch(0.269 0 0);                      // Dark gray
+$muted-foreground-dark: oklch(0.708 0 0);           // Medium gray
+$accent-dark: oklch(0.269 0 0);                     // Dark gray
+$accent-foreground-dark: oklch(0.985 0 0);          // Off white
+$destructive-dark: oklch(0.396 0.141 25.723);       // Dark red
+$destructive-foreground-dark: oklch(0.637 0.237 25.331); // Red
+$border-dark: oklch(0.269 0 0);                     // Dark gray
+$input-dark: oklch(0.269 0 0);                      // Dark gray
+$ring-dark: oklch(0.439 0 0);                       // Dark gray
+
+// Chart colors (brand colors)
+$chart-1: oklch(0.646 0.222 41.116);               // Orange-ish
+$chart-2: oklch(0.6 0.118 184.704);                // Blue-ish
+$chart-3: oklch(0.398 0.07 227.392);               // Purple-ish
+$chart-4: oklch(0.828 0.189 84.429);               // Yellow-ish
+$chart-5: oklch(0.769 0.188 70.08);                // Green-ish
+
+// Sidebar colors
+$sidebar-light: oklch(0.985 0 0);                   // Off white
+$sidebar-foreground-light: oklch(0.145 0 0);        // Near black
+$sidebar-primary-light: oklch(0.205 0 0);           // Dark gray
+$sidebar-primary-foreground-light: oklch(0.985 0 0); // Off white
+$sidebar-accent-light: oklch(0.97 0 0);             // Light gray
+$sidebar-accent-foreground-light: oklch(0.205 0 0);  // Dark gray
+$sidebar-border-light: oklch(0.922 0 0);            // Light gray
+$sidebar-ring-light: oklch(0.708 0 0);              // Medium gray
+
+$sidebar-dark: oklch(0.205 0 0);                    // Dark gray
+$sidebar-foreground-dark: oklch(0.985 0 0);         // Off white
+$sidebar-primary-dark: oklch(0.488 0.243 264.376);  // Purple
+$sidebar-primary-foreground-dark: oklch(0.985 0 0);  // Off white
+$sidebar-accent-dark: oklch(0.269 0 0);             // Dark gray
+$sidebar-accent-foreground-dark: oklch(0.985 0 0);   // Off white
+$sidebar-border-dark: oklch(0.269 0 0);             // Dark gray
+$sidebar-ring-dark: oklch(0.439 0 0);               // Dark gray
+
+// Typography System
+// =================
+
+// Font families (usando var() para permitir customización)
+$font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+$font-mono: var(--font-geist-mono, ui-monospace, 'SF Mono', monospace);
+
+// Font sizes siguiendo escala tipográfica
+$font-size-xs: 0.75rem;      // 12px
+$font-size-sm: 0.875rem;     // 14px  
+$font-size-base: 1rem;       // 16px
+$font-size-lg: 1.125rem;     // 18px
+$font-size-xl: 1.25rem;      // 20px
+$font-size-2xl: 1.5rem;      // 24px
+$font-size-3xl: 1.875rem;    // 30px
+$font-size-4xl: 2.25rem;     // 36px
+$font-size-5xl: 3rem;        // 48px
+$font-size-6xl: 3.75rem;     // 60px
+
+// Font weights
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Line heights
+$line-height-none: 1;
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Spacing
+// ========
+
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+
+// Layout
+// =======
+
+$container-max-width: 1200px;
+$container-padding: 2rem;
+
+// Grid
+$grid-columns: 12;
+$grid-gap: 1rem;
+
+// Breakpoints
+$breakpoint-xs: 320px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1400px;
+
+// Border Radius System (basado en --radius)
+// =========================================
+
+$radius-base: 0.625rem;      // 10px - valor base del sistema
+$radius-sm: calc(#{$radius-base} - 4px);   // ~6px
+$radius-md: calc(#{$radius-base} - 2px);   // ~8px  
+$radius-lg: $radius-base;                  // 10px
+$radius-xl: calc(#{$radius-base} + 4px);   // ~14px
+$radius-full: 9999px;
+
+// Shadows
+// ========
+
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Transitions
+// ============
+
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// Z-Index Scale
+// ==============
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// CSS Custom Properties - Design System Tokens
+// ============================================
+
+:root {
+  // Typography
+  --font-sans: #{$font-sans};
+  --font-mono: #{$font-mono};
+  
+  // Core semantic colors (light theme)
+  --background: #{$background-light};
+  --foreground: #{$foreground-light};
+  --card: #{$card-light};
+  --card-foreground: #{$card-foreground-light};
+  --popover: #{$popover-light};
+  --popover-foreground: #{$popover-foreground-light};
+  --primary: #{$primary-light};
+  --primary-foreground: #{$primary-foreground-light};
+  --secondary: #{$secondary-light};
+  --secondary-foreground: #{$secondary-foreground-light};
+  --muted: #{$muted-light};
+  --muted-foreground: #{$muted-foreground-light};
+  --accent: #{$accent-light};
+  --accent-foreground: #{$accent-foreground-light};
+  --destructive: #{$destructive-light};
+  --destructive-foreground: #{$destructive-foreground-light};
+  --border: #{$border-light};
+  --input: #{$input-light};
+  --ring: #{$ring-light};
+  
+  // Chart colors
+  --chart-1: #{$chart-1};
+  --chart-2: #{$chart-2};
+  --chart-3: #{$chart-3};
+  --chart-4: #{$chart-4};
+  --chart-5: #{$chart-5};
+  
+  // Border radius system
+  --radius: #{$radius-base};
+  
+  // Sidebar colors (light theme)
+  --sidebar: #{$sidebar-light};
+  --sidebar-foreground: #{$sidebar-foreground-light};
+  --sidebar-primary: #{$sidebar-primary-light};
+  --sidebar-primary-foreground: #{$sidebar-primary-foreground-light};
+  --sidebar-accent: #{$sidebar-accent-light};
+  --sidebar-accent-foreground: #{$sidebar-accent-foreground-light};
+  --sidebar-border: #{$sidebar-border-light};
+  --sidebar-ring: #{$sidebar-ring-light};
+}
+
+// Dark theme overrides
+.dark {
+  --background: #{$background-dark};
+  --foreground: #{$foreground-dark};
+  --card: #{$card-dark};
+  --card-foreground: #{$card-foreground-dark};
+  --popover: #{$popover-dark};
+  --popover-foreground: #{$popover-foreground-dark};
+  --primary: #{$primary-dark};
+  --primary-foreground: #{$primary-foreground-dark};
+  --secondary: #{$secondary-dark};
+  --secondary-foreground: #{$secondary-foreground-dark};
+  --muted: #{$muted-dark};
+  --muted-foreground: #{$muted-foreground-dark};
+  --accent: #{$accent-dark};
+  --accent-foreground: #{$accent-foreground-dark};
+  --destructive: #{$destructive-dark};
+  --destructive-foreground: #{$destructive-foreground-dark};
+  --border: #{$border-dark};
+  --input: #{$input-dark};
+  --ring: #{$ring-dark};
+  
+  // Sidebar dark theme
+  --sidebar: #{$sidebar-dark};
+  --sidebar-foreground: #{$sidebar-foreground-dark};
+  --sidebar-primary: #{$sidebar-primary-dark};
+  --sidebar-primary-foreground: #{$sidebar-primary-foreground-dark};
+  --sidebar-accent: #{$sidebar-accent-dark};
+  --sidebar-accent-foreground: #{$sidebar-accent-foreground-dark};
+  --sidebar-border: #{$sidebar-border-dark};
+  --sidebar-ring: #{$sidebar-ring-dark};
+}
