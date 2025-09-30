@@ -1,21 +1,21 @@
-import React, { useCallback } from 'react'
+import { memo, useCallback, useMemo, ReactNode } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useWishlist } from '@/app/providers/WishlistProvider'
 import { Header } from './Header'
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export function Layout({ children }: LayoutProps) {
+export const Layout = memo<LayoutProps>(({ children }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const { totalMovies } = useWishlist()
 
   const getCurrentView = useCallback((): "home" | "detail" | "wishlist" => {
     if (location.pathname === '/') return 'home'
-    if (location.pathname === '/wishlist') return 'wishlist'
-    if (location.pathname.startsWith('/film/')) return 'detail'
+    if (location.pathname === '/favorites') return 'wishlist'
+    if (location.pathname.startsWith('/movie/')) return 'detail'
     return 'home'
   }, [location.pathname])
 
@@ -24,8 +24,10 @@ export function Layout({ children }: LayoutProps) {
   }, [navigate])
 
   const handleWishListClick = useCallback(() => {
-    navigate('/wishlist')
+    navigate('/favorites')
   }, [navigate])
+
+  const currentView = useMemo(() => getCurrentView(), [getCurrentView])
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -33,11 +35,11 @@ export function Layout({ children }: LayoutProps) {
         onHomeClick={handleHomeClick}
         onWishListClick={handleWishListClick}
         wishListCount={totalMovies}
-        currentView={getCurrentView()}
+        currentView={currentView}
       />
       <main className="flex-1">
         {children}
       </main>
     </div>
   )
-}
+})

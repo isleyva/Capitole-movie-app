@@ -1,0 +1,1 @@
+export { default as FavoriteMoviesRoute } from './FavoriteMoviesRoute'
