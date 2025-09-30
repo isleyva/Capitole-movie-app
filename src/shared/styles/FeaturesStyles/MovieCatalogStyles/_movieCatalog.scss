@@ -34,14 +34,14 @@
 }
 .movie-section {
   width: 100%;
-  padding: --spacing-xl 0;
+  padding: $spacing-xl 0;
 
   &__container {
     @include container;
 
     // Spacing between carousels
     > div + div {
-      margin-top: --spacing-3xl;
+      margin-top: $spacing-3xl;
     }
   }
 
@@ -61,7 +61,7 @@
     padding: $spacing-lg 0;
 
     &__container > div + div {
-      margin-top: --spacing-xl;
+      margin-top: $spacing-xl;
     }
   }
 }
