@@ -1,7 +1,7 @@
 import { memo, useCallback } from "react";
 import { Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useWishlist } from "@/app/providers/WishlistProvider";
+import { useWishlist } from "@/ApplicationLayer/providers/WishlistProvider";
 import { Button, MovieCard } from "@/shared/components";
 
 export const WishList = memo(() => {

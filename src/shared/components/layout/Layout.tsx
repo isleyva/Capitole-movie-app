@@ -1,6 +1,6 @@
 import { memo, useCallback, useMemo, ReactNode } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useWishlist } from '@/app/providers/WishlistProvider'
+import { useWishlist } from '@/ApplicationLayer/providers/WishlistProvider'
 import { Header } from './Header'
 
 interface LayoutProps {

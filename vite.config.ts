@@ -10,7 +10,7 @@ export default defineConfig({
       "@": resolve("./src"),
       "@/shared": resolve("./src/shared"),
       "@/features": resolve("./src/features"),
-      "@/app": resolve("./src/app"),
+      "@/ApplicationLayer": resolve("./src/ApplicationLayer"),
     },
   },
 });

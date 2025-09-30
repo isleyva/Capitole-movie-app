@@ -56,6 +56,7 @@ export class HomeMoviesAPI {
    */
   static async getMovieSections(): Promise<MovieSectionData[]> {
     try {
+      // Could be improved with streaming as sections complete
       const [popularMovies, topRatedMovies, upcomingMovies] = await Promise.all(
         [
           this.getPopularMovies(),

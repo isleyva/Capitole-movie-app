@@ -1,30 +1,30 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 
-// Import providers
 import { WishlistProvider } from "./providers/WishlistProvider";
 
-// Import route components (lazy loaded for code splitting)
 import { lazy } from "react";
 
 // Lazy load route components
 const MovieCatalogRoute = lazy(() =>
-  import("@/features/movieCatalog").then((module) => ({ default: module.MovieCatalogRoute }))
+  import("@/features/MovieCatalog").then((module) => ({
+    default: module.MovieCatalogRoute,
+  }))
 );
 const MovieDetailsRoute = lazy(() =>
-  import("@/features/movieDetails").then((module) => ({ default: module.MovieDetailsRoute }))
+  import("@/features/MovieDetails").then((module) => ({
+    default: module.MovieDetailsRoute,
+  }))
 );
 const FavoriteMoviesRoute = lazy(() =>
-  import("@/features/favoriteMovies").then((module) => ({
+  import("@/features/FavoriteMovies").then((module) => ({
     default: module.FavoriteMoviesRoute,
   }))
 );
 
-// Import shared components
 import { Loading, ErrorBoundary, Layout } from "@/shared/components";
 
-// Import global styles
-import "@/shared/styles/main.scss";
+import "@/shared/styles/index.scss";
 
 function App() {
   return (

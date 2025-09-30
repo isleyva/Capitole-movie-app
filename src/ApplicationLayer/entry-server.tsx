@@ -17,7 +17,6 @@ interface RenderOptions {
 export function streamRender({
   url,
   onShellReady,
-  onAllReady,
   onError,
 }: RenderOptions) {
   const queryClient = new QueryClient({
@@ -43,9 +42,6 @@ export function streamRender({
         pipeable.pipe(body);
         onShellReady(body);
       },
-      onAllReady() {
-        onAllReady();
-      },
       onError(err) {
         didError = true;
         onError(err);
@@ -57,4 +53,3 @@ export function streamRender({
     if (!didError) pipeable.abort();
   }, abortDelay);
 }
-

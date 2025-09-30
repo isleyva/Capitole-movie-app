@@ -1,6 +1,6 @@
 import { memo, useMemo, useCallback } from "react";
 import { Heart } from "lucide-react";
-import { useWishlist } from "@/app/providers/WishlistProvider";
+import { useWishlist } from "@/ApplicationLayer/providers/WishlistProvider";
 import { Movie } from "@/shared/types/commonTypes";
 import { MovieCarousel } from "@/shared/components";
 

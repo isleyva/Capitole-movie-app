@@ -18,7 +18,6 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI
     return { hasError: true, error }
   }
 
@@ -32,12 +31,9 @@ export class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      // Custom fallback UI
       if (this.props.fallback) {
         return this.props.fallback
       }
-
-      // Default error UI
       return (
         <div className="error-boundary">
           <div className="error-boundary__content">
@@ -46,7 +42,6 @@ export class ErrorBoundary extends Component<Props, State> {
               We're sorry, but something went wrong. Please try refreshing the page.
             </p>
             
-            {/* Show error details in development */}
             {process.env.NODE_ENV === 'development' && this.state.error && (
               <details className="error-boundary__details">
                 <summary>Error Details (Development Only)</summary>

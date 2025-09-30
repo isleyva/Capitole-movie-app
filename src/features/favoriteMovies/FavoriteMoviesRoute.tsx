@@ -1,4 +1,4 @@
-import { useWishlist } from "@/app/providers/WishlistProvider";
+import { useWishlist } from "@/ApplicationLayer/providers/WishlistProvider";
 import { WishList } from "./components";
 
 function FavoriteMoviesRoute() {

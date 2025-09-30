@@ -112,26 +112,13 @@ export const MovieCarousel = memo<MovieCarouselProps>(
                       key={`skeleton-${index}`}
                       className="movie-carousel__item movie-carousel__item--loading"
                     >
-                      <div className="movie-carousel__card movie-carousel__card--loading">
+                      <div className="movie-carousel__card--loading">
                         <div className="movie-carousel__image-container">
-                          <div className="movie-carousel__image movie-carousel__image--loading">
+                          <div className="movie-carousel__image--loading">
                             <div className="skeleton skeleton--image">
                               <div className="skeleton__shimmer"></div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-
-                      <div className="movie-carousel__info movie-carousel__info--loading">
-                        <div className="movie-carousel__brand movie-carousel__brand--loading">
-                          <div className="skeleton skeleton--brand"></div>
-                        </div>
-                        <div className="movie-carousel__movie-title movie-carousel__movie-title--loading">
-                          <div className="skeleton skeleton--title"></div>
-                          <div className="skeleton skeleton--title-short"></div>
-                        </div>
-                        <div className="movie-carousel__price movie-carousel__price--loading">
-                          <div className="skeleton skeleton--price"></div>
                         </div>
                       </div>
                     </div>

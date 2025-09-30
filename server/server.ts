@@ -1,4 +1,3 @@
-
 import fs from "node:fs/promises";
 import path from "node:path";
 import express from "express";
@@ -24,7 +23,7 @@ const port = process.env.PORT || 3000;
     app.use(express.static("dist/client", { index: false, maxAge: "1h" }));
   }
 
-  // Catch‑all GET for HTML navigation (no filtering yet; could refine Accept header)
+  // Catch‑all GET for HTML navigation
   app.get("*", async (req, res, next) => {
     let ended = false; // Tracks if response is already finalized
     const endOnce = (cb?: () => void) => {
@@ -33,7 +32,7 @@ const port = process.env.PORT || 3000;
       cb?.();
     };
 
-    // Method must be GET (skip POST/PUT/etc.)
+    // Method must be GET (skip POST/PUT/etc.) for this app example, should be refined if we add APIs later on same server
     if (req.method !== "GET") return next();
 
     const accept = req.headers.accept || "";
@@ -42,7 +41,11 @@ const port = process.env.PORT || 3000;
     if (!accept.includes("text/html")) return next();
 
     // Skip if it looks like an asset (has extension)
-    if (/\.(?:js|mjs|ts|tsx|jsx|css|map|json|png|jpe?g|gif|svg|ico|webp|woff2?|ttf|eot)$/i.test(req.path)) {
+    if (
+      /\.(?:js|mjs|ts|tsx|jsx|css|map|json|png|jpe?g|gif|svg|ico|webp|woff2?|ttf|eot)$/i.test(
+        req.path
+      )
+    ) {
       return next();
     }
 
@@ -55,9 +58,7 @@ const port = process.env.PORT || 3000;
 
     try {
       const url = req.originalUrl;
-      
 
-      // Load base template (could cache in prod)
       let template = await fs.readFile(
         path.resolve(isProd ? "dist/client/index.html" : "index.html"),
         "utf-8"
@@ -69,14 +70,14 @@ const port = process.env.PORT || 3000;
 
       // Dynamically load SSR entry (dev: transform, prod: bundled)
       const mod = !isProd
-        ? await vite.ssrLoadModule("/src/app/entry-server.tsx")
+        ? await vite.ssrLoadModule("/src/ApplicationLayer/entry-server.tsx")
         : await import(path.resolve("dist/server/entry-server.js"));
 
       if (typeof mod.streamRender !== "function") {
         throw new Error("streamRender export not found in entry-server");
       }
 
-      const body = new PassThrough(); // Bridge from React pipeable stream to manual control
+      const body = new PassThrough();
 
       // Abort streaming if client disconnects
       res.on("close", () => {
@@ -99,7 +100,6 @@ const port = process.env.PORT || 3000;
         });
       });
 
-      // Send initial shell (improves TTFB)
       res.status(200).setHeader("Content-Type", "text/html; charset=utf-8");
       res.write(head || "");
 
@@ -110,21 +110,18 @@ const port = process.env.PORT || 3000;
           // Shell is ready; pipe React output into PassThrough
           stream.pipe(body);
         },
-        onAllReady() {
-          // Placeholder: could inject dehydrated state before body ends
-        },
         onError(err: unknown) {
           console.error("SSR stream error:", err);
-            if (!ended) {
-              endOnce(() => {
-                res.statusCode = 500;
-                res.end(
-                  "<!doctype html><h1>SSR Error</h1><pre>" +
-                    String(err) +
-                    "</pre>"
-                );
-              });
-            }
+          if (!ended) {
+            endOnce(() => {
+              res.statusCode = 500;
+              res.end(
+                "<!doctype html><h1>SSR Error</h1><pre>" +
+                  String(err) +
+                  "</pre>"
+              );
+            });
+          }
         },
       });
     } catch (e: any) {
@@ -137,8 +134,9 @@ const port = process.env.PORT || 3000;
 
   app.listen(port, () =>
     console.log(
-      `SSR server running at http://localhost:${port} (mode=${isProd ? "production" : "development"})`
+      `SSR server running at http://localhost:${port} (mode=${
+        isProd ? "production" : "development"
+      })`
     )
   );
 })();
-
