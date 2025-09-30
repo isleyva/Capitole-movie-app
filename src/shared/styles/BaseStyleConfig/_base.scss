@@ -1,0 +1,51 @@
+
+:root {
+  --background: 0% 0 0;
+  --foreground: 100% 0 0;
+  --card-foreground: 100% 0 0;
+  --primary: 95.5% 0.016 264.56;
+  --primary-foreground: 12.87% 0.012 258.34;
+  --secondary: 96.65% 0.004 247.86;
+  --secondary-foreground: 13.18% 0.016 260.79;
+  --muted: 96.65% 0.004 247.86;
+  --muted-foreground: 65.44% 0.01 255.52;
+  --accent: 96.65% 0.004 247.86;
+  --accent-foreground: 13.18% 0.016 260.79;
+  --destructive-foreground: 95.5% 0.016 264.56;
+  --border: 91.61% 0.006 247.36;
+  --ring: 95.5% 0.016 264.56;
+  --radius: 0.625rem;
+  }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: oklch(1 0 0);
+  height: 100%;
+}
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}

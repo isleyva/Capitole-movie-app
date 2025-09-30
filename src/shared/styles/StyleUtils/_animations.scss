@@ -40,29 +40,6 @@
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
 }
 
-@mixin animate-pulse {
-  animation: pulse 2s ease-in-out infinite;
-}
-
 @mixin animate-spin {
   animation: spin 1s linear infinite;
-}
-
-@mixin animate-fade-in($duration: 0.3s) {
-  animation: fade-in $duration ease-out;
-}
-
-@mixin animate-slide-up($duration: 0.4s) {
-  animation: slide-up $duration ease-out;
-}
-
-// Reduced motion support
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }

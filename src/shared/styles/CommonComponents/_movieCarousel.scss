@@ -1,0 +1,131 @@
+.movie-carousel {
+  position: relative;
+  margin-bottom: 4rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: oklch(0.145 0 0);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0;
+    will-change: transform;
+    transition: transform 300ms ease;
+
+    &--loading {
+      .movie-carousel__item {
+        cursor: default;
+      }
+    }
+  }
+
+  &__item {
+    flex: 0 0 50%;
+    max-width: 50%;
+    box-sizing: border-box;
+    padding: 0 8px;
+    cursor: pointer;
+
+    &:hover:not(&--placeholder) {
+      .movie-carousel__image {
+        transform: scale(1.02);
+      }
+    }
+
+    &--placeholder {
+      cursor: default;
+      opacity: 0.7;
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 9999px;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid oklch(0.922 0 0);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--prev {
+      left: 8px;
+    }
+
+    &--next {
+      right: 8px;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  &__nav-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    color: oklch(0.556 0 0);
+    transition: color 0.3s ease-in-out;
+  }
+}
+
+/* tablet: 3 por vista */
+@media (min-width: 641px) {
+  .movie-carousel__item {
+    flex-basis: 33.3333%;
+    max-width: 33.3333%;
+  }
+}
+
+/* desktop: 5 por vista */
+@media (min-width: 1025px) {
+  .movie-carousel__item {
+    flex-basis: 20%;
+    max-width: 20%;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

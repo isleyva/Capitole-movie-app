@@ -1,61 +1,3 @@
-// OKLCH Color System (Light Theme)
-$background: oklch(1 0 0); // Pure white
-$foreground: oklch(1 0 0); // Near black
-$card: oklch(1 0 0); // White
-$card-foreground: oklch(0.145 0 0); // Near black
-$popover: oklch(1 0 0); // White
-$popover-foreground: oklch(0.145 0 0); // Near black
-$primary: oklch(0.205 0 0); // Dark gray/black
-$primary-foreground: oklch(0.985 0 0); // Off white
-$secondary: oklch(0.97 0 0); // Light gray
-$secondary-foreground: oklch(0.205 0 0); // Dark gray
-$muted: oklch(0.97 0 0); // Light gray
-$muted-foreground: oklch(0.556 0 0); // Medium gray
-$accent: oklch(0.97 0 0); // Light gray
-$accent-foreground: oklch(0.205 0 0); // Dark gray
-$destructive: oklch(0.577 0.245 27.325); // Red
-$destructive-foreground: oklch(0.577 0.245 27.325); // Red
-$border: oklch(0.922 0 0); // Light gray
-$input: oklch(0.922 0 0); // Light gray
-$ring: oklch(0.708 0 0); // Medium gray
-
-// Chart colors
-$chart-1: oklch(0.646 0.222 41.116); // Orange-ish
-$chart-2: oklch(0.6 0.118 184.704); // Blue-ish
-$chart-3: oklch(0.398 0.07 227.392); // Purple-ish
-$chart-4: oklch(0.828 0.189 84.429); // Yellow-ish
-$chart-5: oklch(0.769 0.188 70.08); // Green-ish
-
-// Application colors (mapped from OKLCH)
-$color-background: #{$background};
-$color-foreground: #{$foreground};
-$color-text: #{$foreground};
-$color-text-muted: #{$muted-foreground};
-$color-primary: #{$primary};
-$color-primary-dark: #{$primary};
-$color-secondary: #{$secondary};
-$color-danger: #{$destructive};
-$color-warning: #{$chart-4};
-$color-success: #{$chart-5};
-$color-info: #{$chart-2};
-
-// Legacy color mappings
-$color-white: #{$background};
-$color-black: #{$foreground};
-$color-gray-100: #{$muted};
-$color-gray-200: #{$border};
-$color-gray-300: #{$border};
-$color-gray-400: #{$muted-foreground};
-$color-gray-500: #{$muted-foreground};
-$color-gray-600: #{$foreground};
-$color-gray-700: #{$foreground};
-$color-gray-800: #{$foreground};
-$color-gray-900: #{$foreground};
-
-// Typography
-$font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
 
 // Font sizes
 $font-size-xs: 0.75rem;
@@ -74,11 +16,6 @@ $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
-// Typography system
-$font-family-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas,
-  "Liberation Mono", Menlo, monospace;
 
 // Font sizes (following Tailwind-like scale)
 $text-xs: 0.75rem; // 12px
@@ -162,8 +99,7 @@ $shadow-xl: 0 20px 25px -5px oklch(0% 0 0 / 0.1),
 $shadow-2xl: 0 25px 50px -12px oklch(0% 0 0 / 0.25);
 $shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.05);
 
-// Movie specific
-$movie-card-aspect-ratio: 3/4;
+
 
 // Animation durations
 $duration-75: 75ms;

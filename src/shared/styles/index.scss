@@ -1,0 +1,22 @@
+// Main SCSS file
+@import "StyleUtils/variables";
+@import "StyleUtils/mixins";
+@import "StyleUtils/utilities";
+@import "StyleUtils/animations";
+
+// Base styles
+
+@import "BaseStyleConfig/base";
+
+// Layout
+@import "LayoutStyles/header";
+
+// Pages
+@import "FeaturesStyles/MovieCatalogStyles/movieCatalog";
+
+// Components
+@import "CommonComponents/button";
+@import "CommonComponents/movieCarousel";
+@import "FeaturesStyles/MovieDetailsStyles/movieDetail";
+@import "CommonComponents/movieCard";
+@import "FeaturesStyles/FavoriteMovies/wishlist";
