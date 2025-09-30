@@ -7,23 +7,18 @@ function MovieDetailsRoute() {
   const movieId = id ? parseInt(id) : 0
   const { movie, isLoading, error } = useMovieDetails(movieId)
 
-  if (!id) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-2">Movie not found</h1>
-          <p className="text-gray-600">The movie ID is not valid.</p>
-        </div>
-      </div>
-    )
-  }
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading movie...</p>
+      <div className="movie-detail">
+        <div className="movie-detail__container">
+          <div className="movie-detail__state-container">
+            <div className="movie-detail__loading">
+              <div className="movie-detail__loading-spinner"></div>
+              <h2 className="movie-detail__loading-title">LOADING</h2>
+              <p className="movie-detail__loading-message">Fetching movie details...</p>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -31,10 +26,21 @@ function MovieDetailsRoute() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold text-red-600 mb-2">Error</h1>
-          <p className="text-gray-600">{error}</p>
+      <div className="movie-detail">
+        <div className="movie-detail__container">
+          <div className="movie-detail__state-container">
+            <div className="movie-detail__error">
+              <div className="movie-detail__error-icon">⚠</div>
+              <h2 className="movie-detail__error-title">ERROR</h2>
+              <p className="movie-detail__error-message">{error}</p>
+              <button 
+                className="movie-detail__error-button"
+                onClick={() => window.location.reload()}
+              >
+                TRY AGAIN
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -42,10 +48,23 @@ function MovieDetailsRoute() {
 
   if (!movie) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-2">Movie not found</h1>
-          <p className="text-gray-600">Could not find the requested movie.</p>
+      <div className="movie-detail">
+        <div className="movie-detail__container">
+          <div className="movie-detail__state-container">
+            <div className="movie-detail__not-found">
+              <div className="movie-detail__not-found-icon">🎬</div>
+              <h2 className="movie-detail__not-found-title">MOVIE NOT FOUND</h2>
+              <p className="movie-detail__not-found-message">
+                The requested movie could not be found in our collection.
+              </p>
+              <button 
+                className="movie-detail__not-found-button"
+                onClick={() => window.history.back()}
+              >
+                GO BACK
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     )
