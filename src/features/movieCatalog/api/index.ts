@@ -1,0 +1,1 @@
+export { HomeMoviesAPI } from './movieCollectionsAPI'

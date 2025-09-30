@@ -1,0 +1,1 @@
+export { MovieCatalogRoute } from './MovieCatalogRoute'
