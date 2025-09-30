@@ -1,16 +1,13 @@
-// Movie App Utilities - Essential classes for Layout
-// ===================================================
-
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
 // Border radius function (used in components)
-@function radius($size: 'md') {
-  @if $size == 'sm' {
+@function radius($size: "md") {
+  @if $size == "sm" {
     @return $radius-sm;
-  } @else if $size == 'md' {
+  } @else if $size == "md" {
     @return $radius-md;
-  } @else if $size == 'lg' {
+  } @else if $size == "lg" {
     @return $radius-lg;
   } @else {
     @return $radius-md;
@@ -32,15 +29,21 @@
 
 // Responsive mixins (movie app breakpoints)
 @mixin mobile {
-  @media (max-width: #{$mobile - 1px}) { @content; }
+  @media (max-width: #{$mobile - 1px}) {
+    @content;
+  }
 }
 
 @mixin tablet {
-  @media (max-width: #{$tablet - 1px}) { @content; }
+  @media (max-width: #{$tablet - 1px}) {
+    @content;
+  }
 }
 
 @mixin desktop {
-  @media (min-width: #{$desktop}) { @content; }
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
 }
 
 // Focus ring mixin
@@ -61,14 +64,14 @@
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  font-size: 0.875rem; // text-sm
-  font-weight: 500; // font-medium
+  font-size: 0.875rem;
+  font-weight: 500;
   @include transition(color, 150ms, ease-in-out);
-  
+
   &:focus-visible {
     @include focus-ring();
   }
-  
+
   &:disabled {
     pointer-events: none;
     opacity: 0.5;
@@ -115,23 +118,23 @@
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
-  
+
   @media (min-width: 640px) {
     max-width: 640px;
   }
-  
+
   @media (min-width: 768px) {
     max-width: 768px;
   }
-  
+
   @media (min-width: 1024px) {
     max-width: 1024px;
   }
-  
+
   @media (min-width: 1280px) {
     max-width: 1280px;
   }
-  
+
   @media (min-width: 1536px) {
     max-width: 1536px;
     padding-left: 2rem;

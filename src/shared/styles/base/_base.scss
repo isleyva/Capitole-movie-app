@@ -1,5 +1,4 @@
-/* Root element setup with OKLCH color system */
-@import '../abstracts/variables';
+@import "../abstracts/variables";
 
 :root {
   --background: 0% 0 0;
@@ -29,7 +28,6 @@
   --radius: 0.625rem;
 }
 
-
 html {
   line-height: $leading-normal;
   font-family: #{$font-family-sans};
@@ -37,7 +35,7 @@ html {
 
 body {
   margin: 0;
-  background: oklch(1 0 0); /* Fondo blanco fijo */
+  background: oklch(1 0 0);
   font-family: #{$font-family-sans};
   font-size: $text-base;
   line-height: $leading-normal;
@@ -63,7 +61,13 @@ button {
 }
 
 // Typography reset
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
   font-size: inherit;
   font-weight: inherit;

@@ -1,6 +1,5 @@
-// Movie Section Container - Optimized
-@import '../abstracts/variables';
-@import '../abstracts/utilities';
+@import "../abstracts/variables";
+@import "../abstracts/utilities";
 
 .movie-section {
   width: 100%;
@@ -8,7 +7,7 @@
 
   &__container {
     @include container;
-    
+
     // Spacing between carousels
     > div + div {
       margin-top: $spacing-3xl;
@@ -22,7 +21,6 @@
 
   // Responsive
   @include desktop-up {
-    
     &__container > div + div {
       margin-top: 5rem;
     }
@@ -30,7 +28,7 @@
 
   @include mobile-only {
     padding: $spacing-lg 0;
-    
+
     &__container > div + div {
       margin-top: $spacing-xl;
     }

@@ -1,9 +1,7 @@
-// Movie Carousel Component - Mytheresa Style
-
 .movie-carousel {
   position: relative;
   margin-bottom: 4rem;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -39,7 +37,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    /* sin gap para que el translateX por % case exacto */
     gap: 0;
     will-change: transform;
     transition: transform 300ms ease;
@@ -51,14 +48,13 @@
     }
   }
 
-  /* ITEM: base 2 por vista en móvil */
   &__item {
     flex: 0 0 50%;
     max-width: 50%;
     box-sizing: border-box;
-    padding: 0 8px; /* "espaciado" interno para simular separación sin romper el cálculo */
+    padding: 0 8px;
     cursor: pointer;
-    
+
     &:hover:not(&--placeholder) {
       .movie-carousel__image {
         transform: scale(1.02);
@@ -71,13 +67,12 @@
     }
   }
 
-  /* navegación posicionada, no afecta layout */
   &__nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 9999px;
     height: 3rem;
     width: 3rem;
@@ -87,14 +82,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
 
-    &--prev { 
-      left: 8px; 
+    &--prev {
+      left: 8px;
     }
 
-    &--next { 
-      right: 8px; 
+    &--next {
+      right: 8px;
     }
 
     &:disabled {
@@ -115,12 +109,12 @@
     border-radius: 8px;
     overflow: hidden;
     background: #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   }
 
   &__image-container {
     width: 100%;
-    aspect-ratio: 2 / 3; /* póster vertical */
+    aspect-ratio: 2 / 3;
     overflow: hidden;
     background: #f3f3f3;
   }
@@ -157,7 +151,7 @@
     width: 0.875rem;
     color: oklch(0.145 0 0);
     transition: all 0.2s ease;
-    
+
     &--active {
       color: oklch(0.577 0.245 27.325);
       fill: oklch(0.577 0.245 27.325);
@@ -172,7 +166,7 @@
   &__brand {
     margin: 4px 0 2px;
     font-size: 11px;
-    letter-spacing: .08em;
+    letter-spacing: 0.08em;
     color: #6b7280;
     text-transform: uppercase;
   }
@@ -258,7 +252,7 @@
     background-color: transparent;
     color: oklch(0.145 0 0);
     transition: all 0.3s ease-in-out;
-    
+
     &:hover:not(:disabled) {
       background-color: oklch(0.205 0 0);
       color: oklch(1 0 0);
@@ -317,6 +311,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -1,7 +1,4 @@
-// Movie App Animations - Essential Only
-// ======================================
-
-@import 'variables';
+@import "variables";
 
 // Loading animations
 @keyframes skeleton-shimmer {
@@ -23,8 +20,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 // Animation utilities

@@ -1,76 +1,75 @@
-// Movie Detail Component - Mytheresa Luxury Style
-@import '../abstracts/variables';
+@import "../abstracts/variables";
 
 .movie-detail {
-  background: oklch(1 0 0); /* Blanco puro */
+  background: oklch(1 0 0);
   min-height: 100vh;
   padding: $spacing-8 0;
 
-  @include responsive('md') {
+  @include responsive("md") {
     padding: $spacing-12 0;
   }
-  
+
   &__container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 $spacing-4;
 
-    @include responsive('md') {
+    @include responsive("md") {
       padding: 0 $spacing-6;
     }
   }
-  
+
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: $spacing-8;
-    
-    @include responsive('lg') {
+
+    @include responsive("lg") {
       grid-template-columns: 1fr 1fr;
       gap: $spacing-12;
     }
   }
-  
+
   &__image-section {
     position: relative;
     aspect-ratio: 2/3;
     overflow: hidden;
     background: oklch(var(--muted));
-    
-    @include responsive('lg') {
+
+    @include responsive("lg") {
       aspect-ratio: 3/4;
     }
   }
-  
+
   &__poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     transition: transform $duration-300 $ease-out;
-    
+
     &:hover {
       transform: scale(1.02);
     }
   }
-  
+
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100%;
-    
-    @include responsive('lg') {
+
+    @include responsive("lg") {
       padding-left: $spacing-8;
     }
   }
-  
+
   &__main-content {
     display: flex;
     flex-direction: column;
     gap: $spacing-6;
   }
-  
+
   &__brand {
     font-size: $text-xs;
     color: oklch(var(--muted-foreground));
@@ -79,67 +78,67 @@
     font-weight: $font-weight-medium;
     margin: 0;
   }
-  
+
   &__title {
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: $font-weight-light;
-    color: oklch(0.145 0 0); /* Negro */
+    color: oklch(0.145 0 0);
     line-height: $leading-tight;
     margin: 0;
     letter-spacing: 0.02em;
   }
-  
+
   &__info-section {
     border-top: 1px solid oklch(var(--border));
     padding-top: $spacing-6;
   }
-  
+
   &__info-title {
     font-size: $text-xs;
-    color: oklch(0.145 0 0); /* Negro */
+    color: oklch(0.145 0 0);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: $font-weight-medium;
     margin-bottom: $spacing-4;
   }
-  
+
   &__metadata {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
-  
+
   &__metadata-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: $spacing-3 0;
     border-bottom: 1px solid oklch(var(--border));
-    
+
     &:last-child {
       border-bottom: none;
     }
   }
-  
+
   &__metadata-label {
     font-size: $text-sm;
     color: oklch(var(--muted-foreground));
     font-weight: $font-weight-normal;
     text-transform: lowercase;
   }
-  
+
   &__metadata-value {
     font-size: $text-sm;
-    color: oklch(0.145 0 0); /* Negro */
+    color: oklch(0.145 0 0);
     font-weight: $font-weight-normal;
     text-align: right;
   }
-  
+
   &__wishlist-section {
     margin-top: auto;
     padding-top: $spacing-8;
   }
-  
+
   &__wishlist-button {
     display: flex;
     align-items: center;
@@ -147,7 +146,7 @@
     gap: $spacing-2;
     background: transparent;
     border: 1px solid oklch(0.145 0 0);
-    color: oklch(0.145 0 0); 
+    color: oklch(0.145 0 0);
     padding: $spacing-4 $spacing-8;
     font-size: $text-xs;
     font-weight: $font-weight-medium;
@@ -158,52 +157,52 @@
     border-radius: 0;
     width: 100%;
     min-height: 48px;
-    
+
     &:hover {
       background: oklch(0.145 0 0);
       color: oklch(1 0 0);
-      
+
       .movie-detail__wishlist-icon {
         color: oklch(1 0 0);
-        
+
         &.active {
-          color: oklch(0.65 0.25 29.23); // Rojo en hover
+          color: oklch(0.65 0.25 29.23);
         }
       }
     }
-    
+
     &:focus-visible {
       outline: 2px solid oklch(0.145 0 0);
       outline-offset: 2px;
     }
-    
+
     &:active {
       transform: translateY(1px);
     }
   }
-  
+
   &__wishlist-icon {
     width: 1rem;
     height: 1rem;
     transition: all $duration-300 $ease-out;
-    
+
     &.active {
       fill: currentColor;
-      color: oklch(0.55 0.22 29.23); // Rojo cuando está añadido
+      color: oklch(0.55 0.22 29.23);
     }
   }
-  
+
   &__recommendations {
     margin-top: $spacing-16;
     padding-top: $spacing-12;
     border-top: 1px solid oklch(var(--border));
   }
-  
+
   &__no-recommendations {
     padding: $spacing-16 0;
     text-align: center;
   }
-  
+
   &__no-recommendations-content {
     max-width: 480px;
     margin: 0 auto;
@@ -212,7 +211,7 @@
     border: 1px solid oklch(0.94 0 0);
     border-radius: 0;
   }
-  
+
   &__no-recommendations-title {
     font-size: $text-xs;
     color: oklch(0.145 0 0);
@@ -223,7 +222,7 @@
     border-bottom: 1px solid oklch(0.92 0 0);
     padding-bottom: $spacing-4;
   }
-  
+
   &__no-recommendations-message {
     font-size: $text-base;
     color: oklch(0.145 0 0);
@@ -232,7 +231,7 @@
     margin: 0 0 $spacing-3 0;
     letter-spacing: 0.02em;
   }
-  
+
   &__no-recommendations-subtitle {
     font-size: $text-sm;
     color: oklch(0.556 0 0);

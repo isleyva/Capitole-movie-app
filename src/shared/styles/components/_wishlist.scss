@@ -1,8 +1,4 @@
-// =============================================================================
-// Wishlist Component Styles - Mytheresa Style
-// =============================================================================
-
-@import '../abstracts/variables';
+@import "../abstracts/variables";
 
 .wishlist {
   background-color: oklch(1 0 0);
@@ -133,26 +129,25 @@
     }
   }
 
-  // MovieCard wrapper styles for wishlist context
   &__card-wrapper {
     .movie-carousel__item {
       width: 100%;
       flex: none;
-      
+
       .movie-carousel__card {
         height: auto;
         aspect-ratio: 3/4;
-        
+
         .movie-carousel__image-container {
           aspect-ratio: 3/4;
         }
       }
-      
+
       .movie-carousel__info {
         padding: 1rem 0.5rem 0;
         text-align: center;
       }
-      
+
       .movie-carousel__brand {
         font-size: 0.75rem;
         letter-spacing: 0.1em;
@@ -160,7 +155,7 @@
         color: var(--muted-foreground);
         margin-bottom: 0.25rem;
       }
-      
+
       .movie-carousel__movie-title {
         font-size: 0.875rem;
         font-weight: 300;
@@ -175,7 +170,7 @@
   &__item {
     position: relative;
     transition: transform $transition-normal;
-    
+
     &:hover {
       transform: translateY(-4px);
     }
@@ -191,7 +186,7 @@
     border-radius: $radius-sm;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: box-shadow $transition-normal;
-    
+
     &:hover {
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
@@ -231,7 +226,7 @@
       background-color: oklch(0.577 0.245 27.325);
       border-color: oklch(0.577 0.245 27.325);
       transform: scale(1.1);
-      
+
       .wishlist__item-remove-icon {
         color: oklch(1 0 0);
       }
@@ -325,11 +320,11 @@
   .wishlist__item-remove {
     transition: none;
   }
-  
+
   .wishlist__item:hover {
     transform: none;
   }
-  
+
   .wishlist__item-image:hover {
     transform: none;
   }

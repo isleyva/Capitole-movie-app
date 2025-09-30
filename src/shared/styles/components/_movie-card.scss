@@ -1,16 +1,14 @@
-// Movie Card Component - Mytheresa Style
-
 .movie-carousel__card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .movie-carousel__image-container {
   width: 100%;
-  aspect-ratio: 2 / 3; /* póster vertical */
+  aspect-ratio: 2 / 3;
   overflow: hidden;
   background: #f3f3f3;
 }
@@ -47,7 +45,7 @@
   width: 0.875rem;
   color: oklch(0.145 0 0);
   transition: all 0.2s ease;
-  
+
   &--active {
     color: oklch(0.577 0.245 27.325);
     fill: oklch(0.577 0.245 27.325);
@@ -62,7 +60,7 @@
 .movie-carousel__brand {
   margin: 4px 0 2px;
   font-size: 11px;
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   color: #6b7280;
   text-transform: uppercase;
 }
@@ -130,6 +128,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

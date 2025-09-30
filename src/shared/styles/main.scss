@@ -1,29 +1,29 @@
-// Main SCSS file - Movie App with OKLCH Design System
-@import 'abstracts/variables';
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
-@import 'abstracts/utilities';
-@import 'abstracts/animations';
+// Main SCSS file
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/utilities";
+@import "abstracts/animations";
 
 // Base styles
-@import 'base/reset';
-@import 'base/base';
-@import 'base/typography';
+@import "base/reset";
+@import "base/base";
+@import "base/typography";
 
 // Layout
-@import 'layout/header';
+@import "layout/header";
 
 // Pages
-@import 'pages/movie-catalog';
+@import "pages/movie-catalog";
 
 // Components
-@import 'components/button';
-@import 'components/movie-carousel';
-@import 'components/movie-carousel-loading';
-@import 'components/movie-section';
-@import 'components/movie-detail';
-@import 'components/movie-card';
-@import 'components/wishlist';
+@import "components/button";
+@import "components/movie-carousel";
+@import "components/movie-carousel-loading";
+@import "components/movie-section";
+@import "components/movie-detail";
+@import "components/movie-card";
+@import "components/wishlist";
 
 // Utility classes
 .min-h-screen {

@@ -1,23 +1,19 @@
-// =============================================================================
-// Movie Carousel Loading Styles - Mytheresa Style
-// =============================================================================
-
-@import '../abstracts/variables';
-@import '../abstracts/animations';
+@import "../abstracts/variables";
+@import "../abstracts/animations";
 
 // Movie carousel loading states
 .movie-carousel {
   &__item--loading {
     opacity: 0.7;
     pointer-events: none;
-    
+
     .movie-carousel__card {
       position: relative;
       overflow: hidden;
       background: oklch(var(--color-surface-subtle));
-      
+
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -100%;
@@ -34,15 +30,15 @@
       }
     }
   }
-  
+
   &__image--loading {
     background: oklch(var(--color-surface-subtle));
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     &::after {
-      content: '';
+      content: "";
       width: $spacing-8;
       height: $spacing-8;
       border: 2px solid oklch(var(--color-border));
@@ -51,7 +47,7 @@
       animation: spin 1s linear infinite;
     }
   }
-  
+
   &__info--loading {
     .movie-carousel__brand {
       background: oklch(var(--color-surface-subtle));
@@ -60,7 +56,7 @@
       border-radius: $radius-sm;
       margin-bottom: $spacing-2;
     }
-    
+
     .movie-carousel__movie-title {
       background: oklch(var(--color-surface-subtle));
       height: $spacing-4;
@@ -68,7 +64,7 @@
       border-radius: $radius-sm;
       margin-bottom: $spacing-1;
     }
-    
+
     .movie-carousel__price {
       background: oklch(var(--color-surface-subtle));
       height: $spacing-4;
@@ -89,11 +85,11 @@
 }
 
 @keyframes spin {
-  0% { 
-    transform: rotate(0deg); 
+  0% {
+    transform: rotate(0deg);
   }
-  100% { 
-    transform: rotate(360deg); 
+  100% {
+    transform: rotate(360deg);
   }
 }
 
@@ -103,7 +99,7 @@
   .movie-carousel__image--loading::after {
     animation: none;
   }
-  
+
   .movie-carousel__item--loading {
     opacity: 0.5;
   }

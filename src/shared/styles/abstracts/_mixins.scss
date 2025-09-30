@@ -1,7 +1,4 @@
-// Movie App Mixins - Essential Only
-// ==================================
-
-@import 'variables';
+@import "variables";
 
 // Button base styles mixin
 @mixin button-base {
@@ -15,7 +12,7 @@
   transition: all $transition-fast;
   text-decoration: none;
   font-family: $font-family-primary;
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -24,29 +21,40 @@
 
 // Media query mixins
 @mixin mobile {
-  @media (max-width: #{$mobile - 1px}) { @content; }
+  @media (max-width: #{$mobile - 1px}) {
+    @content;
+  }
 }
 
 @mixin tablet {
-  @media (min-width: #{$tablet}) { @content; }
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
 }
 
 @mixin desktop {
-  @media (min-width: #{$desktop}) { @content; }
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
 }
 
 @mixin mobile-only {
-  @media (max-width: #{$mobile - 1px}) { @content; }
+  @media (max-width: #{$mobile - 1px}) {
+    @content;
+  }
 }
 
 @mixin tablet-up {
-  @media (min-width: #{$tablet}) { @content; }
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
 }
 
 @mixin desktop-up {
-  @media (min-width: #{$desktop}) { @content; }
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
 }
-
 
 @mixin movie-card-hover {
   &:hover:not(.disabled) {
@@ -55,15 +63,22 @@
   }
 }
 
-
 @mixin responsive($breakpoint) {
-  @if $breakpoint == 'sm' {
-    @media (min-width: 640px) { @content; }
-  } @else if $breakpoint == 'md' {
-    @media (min-width: 768px) { @content; }
-  } @else if $breakpoint == 'lg' {
-    @media (min-width: 1024px) { @content; }
-  } @else if $breakpoint == 'xl' {
-    @media (min-width: 1280px) { @content; }
+  @if $breakpoint == "sm" {
+    @media (min-width: 640px) {
+      @content;
+    }
+  } @else if $breakpoint == "md" {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: 1280px) {
+      @content;
+    }
   }
 }

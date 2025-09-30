@@ -92,7 +92,7 @@ export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
                     isInWishList ? "active" : ""
                   }`}
                 />
-                {isInWishList ? "AÑADIDA A LA WISHLIST" : "AÑADIR A LA WISHLIST"}
+                {isInWishList ? "ADDED TO WISHLIST" : "ADD TO WISHLIST"}
               </button>
             </div>
           </div>
