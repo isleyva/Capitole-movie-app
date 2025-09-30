@@ -1,0 +1,103 @@
+// Movie Catalog Route - Mytheresa Style
+@import '../abstracts/variables';
+
+.home-route {
+  min-height: 100vh;
+  background: oklch(1 0 0); /* Blanco puro */
+
+  &__hero {
+    position: relative;
+    background: oklch(1 0 0); /* Blanco puro */
+    padding: 4rem 0 3rem;
+    text-align: center;
+    border-bottom: none; /* Sin borde para coincidir con la referencia */
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 200; /* Más delgado para elegancia */
+    color: oklch(0.145 0 0); /* Negro */
+    letter-spacing: 0.2em; /* Más espaciado */
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-family: #{$font-family-sans};
+    line-height: 1.1;
+  }
+
+  &__subtitle {
+    font-size: 0.875rem;
+    color: oklch(0.556 0 0); /* Gris medio */
+    letter-spacing: 0.1em; /* Más espaciado */
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 300; /* Más delgado */
+    margin-bottom: 2rem;
+  }
+}
+
+// Movie Section Container - Clean Mytheresa Layout
+.movie-section {
+  background: oklch(1 0 0); /* Blanco puro */
+  
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__error {
+    text-align: center;
+    padding: $spacing-16;
+    color: oklch(0.577 0.245 27.325); /* Rojo */
+    
+    p {
+      font-size: $text-base;
+      margin: 0;
+    }
+  }
+}
+
+// Movie Carousel Variants - Each category with Mytheresa styling
+.movie-carousel {
+  margin-bottom: $spacing-16;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // Category-specific styling to match Mytheresa luxury feel
+  &--popular,
+  &--top-rated,
+  &--upcoming {
+    .movie-carousel__title {
+      font-size: $text-xl;
+      font-weight: $font-weight-light;
+      color: oklch(0.145 0 0); /* Negro */
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: $spacing-8;
+      text-align: center;
+      
+      @media (min-width: 768px) {
+        font-size: $text-2xl;
+        text-align: left;
+      }
+    }
+  }
+
+  // Loading state with elegant placeholder
+  &--loading {
+    .movie-carousel__title {
+      color: oklch(0.556 0 0); /* Gris medio */
+      animation: pulse 2s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

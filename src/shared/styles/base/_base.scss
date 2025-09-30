@@ -29,34 +29,6 @@
   --radius: 0.625rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 3.63% 0.017 264.66;
-    --foreground: 95.5% 0.016 264.56;
-    --card: 3.63% 0.017 264.66;
-    --card-foreground: 95.5% 0.016 264.56;
-    --popover: 3.63% 0.017 264.66;
-    --popover-foreground: 95.5% 0.016 264.56;
-    --primary: 95.5% 0.016 264.56;
-    --primary-foreground: 12.87% 0.012 258.34;
-    --secondary: 13.18% 0.016 260.79;
-    --secondary-foreground: 95.5% 0.016 264.56;
-    --muted: 13.18% 0.016 260.79;
-    --muted-foreground: 65.44% 0.01 255.52;
-    --accent: 13.18% 0.016 260.79;
-    --accent-foreground: 95.5% 0.016 264.56;
-    --destructive: 62.8% 0.257 29.31;
-    --destructive-foreground: 95.5% 0.016 264.56;
-    --border: 13.18% 0.016 260.79;
-    --input: 13.18% 0.016 260.79;
-    --ring: 65.44% 0.01 255.52;
-    --chart-1: 62.8% 0.257 29.31;
-    --chart-2: 75.68% 0.15 66.54;
-    --chart-3: 78.36% 0.12 102.73;
-    --chart-4: 74.04% 0.167 196.38;
-    --chart-5: 70.67% 0.185 262.97;
-  }
-}
 
 html {
   line-height: $leading-normal;
@@ -65,12 +37,10 @@ html {
 
 body {
   margin: 0;
-  background: oklch(var(--background));
-  color: oklch(var(--foreground));
+  background: oklch(1 0 0); /* Fondo blanco fijo */
   font-family: #{$font-family-sans};
   font-size: $text-base;
   line-height: $leading-normal;
-  transition: background-color $duration-300 $ease-out, color $duration-300 $ease-out;
 }
 
 // Focus styles

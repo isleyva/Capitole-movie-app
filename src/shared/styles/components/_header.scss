@@ -1,15 +1,15 @@
 // =============================================================================
-// Header Component Styles
+// Header Component Styles - Mytheresa Style
 // =============================================================================
 
 .header {
-  background-color: white;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: oklch(1 0 0); // Fondo blanco puro
+  border-bottom: 1px solid oklch(0.922 0 0); // Borde sutil
   
   &__container {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 1.5rem 2rem; // Más padding para elegancia
   }
   
   &__content {
@@ -27,16 +27,48 @@
   &__logo {
     background: none;
     border: none;
-    font-size: 1.5rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: #111827;
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: opacity 0.3s ease;
+    text-align: left;
     
     &:hover {
-      color: #374151;
+      opacity: 0.8;
     }
+  }
+  
+  &__brand-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  &__main-title {
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: oklch(0.145 0 0);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  
+  &__subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: oklch(0.145 0 0);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  
+  &__tagline {
+    font-size: 0.625rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: oklch(0.556 0 0);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 0.125rem;
   }
   
   &__actions {
@@ -47,44 +79,43 @@
   
   &__wishlist-button {
     position: relative;
-    width: 2rem;
-    height: 2rem;
     background: none;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.25rem;
-    transition: background-color 0.2s ease;
+    padding: 0.5rem; // Solo padding interno, sin fondo
+    transition: opacity 0.3s ease;
     
     &:hover {
-      background-color: #f3f4f6;
+      opacity: 0.7; // Solo cambio de opacidad al hover
     }
   }
   
   &__wishlist-icon {
-    width: 1rem;
-    height: 1rem;
-    color: #111827;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: oklch(0.145 0 0); // Negro para el icono
+    transition: color 0.3s ease;
   }
   
   &__wishlist-badge {
     position: absolute;
-    top: -0.25rem;
-    right: -0.25rem;
-    background-color: white;
-    color: black;
-    font-size: 0.75rem;
+    top: 0;
+    right: 0;
+    background-color: oklch(0.145 0 0); // Fondo negro
+    color: oklch(1 0 0); // Texto blanco
+    font-size: 0.625rem; // Más pequeño y elegante
     border-radius: 50%;
     width: 1rem;
     height: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #e5e7eb;
     font-weight: 500;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-width: 1rem;
   }
 }
 
@@ -92,15 +123,37 @@
 @media (max-width: 768px) {
   .header {
     &__container {
-      padding: 0.75rem 1rem;
+      padding: 1rem 1.5rem; // Mantener elegancia en móvil
     }
     
-    &__logo {
-      font-size: 1.25rem;
+    &__main-title {
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+    
+    &__subtitle {
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+    }
+    
+    &__tagline {
+      font-size: 0.5rem;
+      letter-spacing: 0.04em;
     }
     
     &__brand {
       gap: 1rem;
+    }
+    
+    &__wishlist-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+    
+    &__wishlist-badge {
+      width: 0.875rem;
+      height: 0.875rem;
+      font-size: 0.5rem;
     }
   }
 }

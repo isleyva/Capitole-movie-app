@@ -13,11 +13,16 @@
 // Layout
 @import 'layout/header';
 
+// Pages
+@import 'pages/movie-catalog';
+
 // Components
 @import 'components/button';
 @import 'components/movie-carousel';
+@import 'components/movie-carousel-loading';
 @import 'components/movie-section';
 @import 'components/movie-detail';
+@import 'components/movie-card';
 @import 'components/wishlist';
 
 // Utility classes

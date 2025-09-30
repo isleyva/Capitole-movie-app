@@ -1,70 +1,48 @@
-// Movie Carousel Component - Optimized
-@import '../abstracts/variables';
-@import '../abstracts/utilities';
+// Movie Carousel Component - Mytheresa Style
 
 .movie-carousel {
-  margin-bottom: $spacing-3xl;
+  position: relative;
+  margin-bottom: 4rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__header {
-    @include flex-between;
-    margin-bottom: $spacing-xl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__title {
-    font-size: $font-size-2xl;
-    font-weight: $font-weight-light;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: oklch(0.145 0 0);
     text-align: center;
     width: 100%;
-    color: var(--foreground);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 300;
   }
 
   &__container {
     position: relative;
   }
 
-  &__nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    height: 3rem;
-    width: 3rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    
-    &:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
-
-    &--prev {
-      left: 0;
-    }
-
-    &--next {
-      right: 0;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
-
-  &__nav-icon {
-    height: 1.5rem;
-    width: 1.5rem;
-  }
-
   &__viewport {
     overflow: hidden;
-    padding: 0 3rem; // More padding to prevent card cuts
-    box-sizing: border-box;
+    width: 100%;
   }
 
   &__track {
     display: flex;
-    transition: transform 0.3s ease;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /* sin gap para que el translateX por % case exacto */
+    gap: 0;
     will-change: transform;
+    transition: transform 300ms ease;
 
     &--loading {
       .movie-carousel__item {
@@ -73,13 +51,13 @@
     }
   }
 
+  /* ITEM: base 2 por vista en móvil */
   &__item {
-    flex: none;
-    width: 20%; // 5 elementos por defecto
-    cursor: pointer;
-    min-width: 0;
-    padding: 0 0.5rem; // Padding en lugar de gap
+    flex: 0 0 50%;
+    max-width: 50%;
     box-sizing: border-box;
+    padding: 0 8px; /* "espaciado" interno para simular separación sin romper el cálculo */
+    cursor: pointer;
     
     &:hover:not(&--placeholder) {
       .movie-carousel__image {
@@ -93,43 +71,80 @@
     }
   }
 
-  &__card {
-    position: relative;
-    background-color: var(--muted);
-    aspect-ratio: 3/4; // Maintain exact 3:4 proportion
-    height: 280px; // Fixed height for smaller images
-    width: 100%;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    border-radius: radius('sm'); // Subtle border radius for smaller images
+  /* navegación posicionada, no afecta layout */
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(255,255,255,0.9);
+    border-radius: 9999px;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid oklch(0.922 0 0);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    &--prev { 
+      left: 8px; 
+    }
+
+    &--next { 
+      right: 8px; 
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
   }
 
-  &__badge {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    background-color: var(--background);
-    padding: 0.2rem 0.4rem;
-    font-size: 0.65rem; // Smaller for compact images
-    color: var(--muted-foreground);
-    border: 1px solid var(--border);
-    border-radius: radius('sm');
-    z-index: 5;
-    font-weight: $font-weight-medium;
+  &__nav-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    color: oklch(0.556 0 0);
+    transition: color 0.3s ease-in-out;
+  }
+
+  &__card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  &__image-container {
+    width: 100%;
+    aspect-ratio: 2 / 3; /* póster vertical */
+    overflow: hidden;
+    background: #f3f3f3;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 200ms ease-in-out;
   }
 
   &__wishlist {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.375rem;
-    background-color: transparent;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    background: none;
     border: none;
-    border-radius: 50%;
     cursor: pointer;
-    z-index: 5;
-     background-color: rgba(255, 255, 255, 0.8);
-    @include transition(background-color, 150ms, ease-in-out);
+    padding: 0.375rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transition: background-color 150ms ease-in-out;
 
     &:disabled {
       opacity: 0.5;
@@ -140,35 +155,64 @@
   &__heart-icon {
     height: 0.875rem;
     width: 0.875rem;
-    color: var(--foreground);
+    color: oklch(0.145 0 0);
     transition: all 0.2s ease;
     
     &--active {
-      color: #000000;
-      fill: #000000;
+      color: oklch(0.577 0.245 27.325);
+      fill: oklch(0.577 0.245 27.325);
     }
   }
 
-  &__image-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    display: block;
+  &__info {
+    padding: 8px 4px 0;
+    text-align: center;
   }
 
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    @include transition(transform, 200ms, ease-in-out);
+  &__brand {
+    margin: 4px 0 2px;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: #6b7280;
+    text-transform: uppercase;
+  }
+
+  &__movie-title {
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.35;
+    color: #111827;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__price {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: oklch(0.145 0 0);
+  }
+
+  &__badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: oklch(1 0 0);
+    padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+    color: oklch(0.556 0 0);
+    border: 1px solid oklch(0.922 0 0);
+    border-radius: 4px;
+    z-index: 5;
+    font-weight: 500;
   }
 
   &__placeholder-image {
-    background: oklch(var(--muted));
-    border-radius: $radius-md;
+    background: oklch(0.97 0 0);
+    border-radius: 8px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -178,48 +222,21 @@
 
   &__placeholder-content {
     display: block;
-    background: oklch(var(--muted));
-    color: oklch(var(--muted-foreground));
-    padding: $spacing-4;
+    background: oklch(0.97 0 0);
+    color: oklch(0.556 0 0);
+    padding: 1rem;
     text-align: center;
-    border-radius: $radius-md;
+    border-radius: 8px;
   }
 
   &__spinner {
     display: inline-block;
     width: 2rem;
     height: 2rem;
-    border: 2px solid oklch(var(--muted));
-    border-top: 2px solid oklch(var(--primary));
+    border: 2px solid oklch(0.97 0 0);
+    border-top: 2px solid oklch(0.205 0 0);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-  }
-
-  &__info {
-    text-align: center;
-    padding: 0 0.5rem;
-  }
-
-  &__brand {
-    font-size: $font-size-xs;
-    color: var(--muted-foreground);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-  }
-
-  &__movie-title {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-light;
-    color: var(--foreground);
-    margin-bottom: 0.25rem;
-    @include line-clamp(2);
-  }
-
-  &__price {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-    color: var(--foreground);
   }
 
   &__footer {
@@ -228,65 +245,49 @@
   }
 
   &__view-all {
-    background-color: var(--primary);
-    color: var(--primary-foreground);
-    padding: 0.5rem 2rem;
-    font-size: $font-size-sm;
-    letter-spacing: 0.05em;
-    border-radius: radius('md');
-
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid oklch(0.922 0 0);
+    background-color: transparent;
+    color: oklch(0.145 0 0);
+    transition: all 0.3s ease-in-out;
+    
     &:hover:not(:disabled) {
-      opacity: 0.9;
+      background-color: oklch(0.205 0 0);
+      color: oklch(1 0 0);
+      border-color: oklch(0.205 0 0);
+      transform: translateY(-1px);
     }
 
     &:disabled {
-      opacity: 0.6;
+      opacity: 0.5;
       cursor: not-allowed;
-    }
-  }
-
-
-  
-  @media (max-width: 1024px) {
-    &__item {
-      width: 33.333333%;
-    }
-  }
-
-  @media (max-width: 640px) {
-    &__item {
-      width: 50%; 
-    }
-
-    &__viewport {
-      padding: 0 2rem;
-    }
-
-    &__nav {
-      height: 2.5rem;
-      width: 2.5rem;
-
-      &--prev {
-        left: 0.5rem;
-      }
-
-      &--next {
-        right: 0.5rem;
-      }
-    }
-
-    &__nav-icon {
-      height: 1.25rem;
-      width: 1.25rem;
-    }
-
-    &__card {
-      height: 260px;
     }
   }
 }
 
-// Animations moved to abstracts/_animations.scss
+/* tablet: 3 por vista */
+@media (min-width: 641px) {
+  .movie-carousel__item {
+    flex-basis: 33.3333%;
+    max-width: 33.3333%;
+  }
+}
+
+/* desktop: 5 por vista */
+@media (min-width: 1025px) {
+  .movie-carousel__item {
+    flex-basis: 20%;
+    max-width: 20%;
+  }
+}
 
 // Category specific styling
 .movie-carousel {

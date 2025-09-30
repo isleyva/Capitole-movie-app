@@ -1,6 +1,6 @@
-// Movie Section Component
+// Movie Section Container - Optimized
 @import '../abstracts/variables';
-@import '../abstracts/mixins';
+@import '../abstracts/utilities';
 
 .movie-section {
   width: 100%;
@@ -22,7 +22,6 @@
 
   // Responsive
   @include desktop-up {
-    padding: $spacing-3xl 0;
     
     &__container > div + div {
       margin-top: 5rem;
