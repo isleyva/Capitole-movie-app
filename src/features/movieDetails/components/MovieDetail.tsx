@@ -1,0 +1,113 @@
+import { memo, useMemo, useCallback } from "react";
+import { Heart } from "lucide-react";
+import { useWishlist } from "@/app/providers/WishlistProvider";
+import { Movie } from "@/shared/types/commonTypes";
+import { MovieCarousel } from "@/shared/components";
+
+type MovieDetailProps = {
+  movie: Movie;
+}
+
+export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
+  const { addMovie, removeMovie, isInWishlist } = useWishlist();
+  
+  const isInWishList = useMemo(() => 
+    isInWishlist(movie.id), 
+    [isInWishlist, movie.id]
+  );
+
+  const handleWishlistToggle = useCallback(() => {
+    if (isInWishList) {
+      removeMovie(movie.id);
+    } else {
+      addMovie(movie);
+    }
+  }, [isInWishList, removeMovie, addMovie, movie.id]);
+
+  return (
+    <div className="movie-detail">
+      <div className="movie-detail__container">
+        <div className="movie-detail__grid">
+          <div className="movie-detail__image-section">
+            <img
+              src={movie.image}
+              alt={movie.title}
+              className="movie-detail__poster"
+            />
+          </div>
+
+          <div className="movie-detail__content">
+            <div className="movie-detail__main-content">
+              <div className="movie-detail__brand">{movie.brand}</div>
+
+              <h1 className="movie-detail__title">{movie.title}</h1>
+
+              <div className="movie-detail__info-section">
+                <h3 className="movie-detail__info-title">MOVIE DETAILS</h3>
+
+                <div className="movie-detail__metadata">
+                  <div className="movie-detail__metadata-item">
+                    <span className="movie-detail__metadata-label">Studio:</span>
+                    <span className="movie-detail__metadata-value">
+                      {movie.brand}
+                    </span>
+                  </div>
+                  <div className="movie-detail__metadata-item">
+                    <span className="movie-detail__metadata-label">Year:</span>
+                    <span className="movie-detail__metadata-value">
+                      {movie.release_date}
+                    </span>
+                  </div>
+                  <div className="movie-detail__metadata-item">
+                    <span className="movie-detail__metadata-label">Rating:</span>
+                    <span className="movie-detail__metadata-value">
+                      ★ {movie.vote_average}
+                    </span>
+                  </div>
+                  <div className="movie-detail__metadata-item">
+                    <span className="movie-detail__metadata-label">
+                      Release date:
+                    </span>
+                    <span className="movie-detail__metadata-value">
+                      {movie.release_date}
+                    </span>
+                  </div>
+                  <div className="movie-detail__metadata-item">
+                    <span className="movie-detail__metadata-label">Revenue:</span>
+                    <span className="movie-detail__metadata-value">
+                      {movie.revenue}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="movie-detail__wishlist-section">
+              <button
+                className="movie-detail__wishlist-button"
+                onClick={handleWishlistToggle}
+              >
+                <Heart
+                  className={`movie-detail__wishlist-icon ${
+                    isInWishList ? "active" : ""
+                  }`}
+                />
+                {isInWishList ? "AÑADIDA A LA WISHLIST" : "AÑADIR A LA WISHLIST"}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {movie.recommendations && movie.recommendations.length > 0 && (
+          <div className="movie-detail__recommendations">
+            <MovieCarousel
+              title="YOU MIGHT ALSO LIKE"
+              movies={movie.recommendations}
+              isLoading={false}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+});
