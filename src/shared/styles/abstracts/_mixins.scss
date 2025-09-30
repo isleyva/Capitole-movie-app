@@ -1,53 +1,69 @@
-// Mixins for common patterns
-// =========================
+// Movie App Mixins - Essential Only
+// ==================================
 
-// Media query mixin
-@mixin breakpoint($size) {
-  @if $size == xs {
-    @media (min-width: #{$breakpoint-xs}) { @content; }
-  }
-  @if $size == sm {
-    @media (min-width: #{$breakpoint-sm}) { @content; }
-  }
-  @if $size == md {
-    @media (min-width: #{$breakpoint-md}) { @content; }
-  }
-  @if $size == lg {
-    @media (min-width: #{$breakpoint-lg}) { @content; }
-  }
-  @if $size == xl {
-    @media (min-width: #{$breakpoint-xl}) { @content; }
-  }
-}
+@import 'variables';
 
-// Button mixin
-@mixin button-style($bg-color, $text-color: white) {
-  background-color: $bg-color;
-  color: $text-color;
-  border: none;
+// Button base styles mixin
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: $spacing-sm $spacing-md;
+  border: none;
   border-radius: $border-radius-md;
   cursor: pointer;
-  transition: $transition-normal;
+  transition: all $transition-fast;
+  text-decoration: none;
+  font-family: $font-family-primary;
   
-  &:hover {
-    background-color: darken($bg-color, 10%);
-  }
-  
-  &:active {
-    transform: translateY(1px);
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 
-// Card mixin
-@mixin card {
-  background: var(--color-surface);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  padding: var(--spacing-lg);
-  transition: var(--transition-normal);
-  
-  &:hover {
-    box-shadow: var(--shadow-lg);
+// Media query mixins
+@mixin mobile {
+  @media (max-width: #{$mobile - 1px}) { @content; }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet}) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) { @content; }
+}
+
+@mixin mobile-only {
+  @media (max-width: #{$mobile - 1px}) { @content; }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$tablet}) { @content; }
+}
+
+@mixin desktop-up {
+  @media (min-width: #{$desktop}) { @content; }
+}
+
+
+@mixin movie-card-hover {
+  &:hover:not(.disabled) {
+    transform: scale(1.02);
+    transition: transform $transition-fast;
+  }
+}
+
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: 640px) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: 768px) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: 1024px) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: 1280px) { @content; }
   }
 }

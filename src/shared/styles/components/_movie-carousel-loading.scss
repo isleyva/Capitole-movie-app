@@ -1,0 +1,151 @@
+// =============================================================================
+// Movie Carousel Loading Styles - Consolidated
+// =============================================================================
+
+@import '../abstracts/animations';
+@import '../abstracts/loading';
+
+// Movie carousel loading states
+.movie-carousel--loading {
+  .movie-carousel__nav--disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    
+    .movie-carousel__nav-skeleton {
+      width: 24px;
+      height: 24px;
+      background: var(--color-neutral-300);
+      border-radius: 4px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+  }
+  
+  .movie-carousel__track--loading {
+    .movie-carousel__item--loading {
+      pointer-events: none;
+      
+      .movie-carousel__card--loading {
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+          );
+          animation: skeleton-shimmer 2s ease-in-out infinite;
+          z-index: 1;
+          pointer-events: none;
+        }
+      }
+      
+      .movie-carousel__badge--loading {
+        position: absolute;
+        top: var(--spacing-sm);
+        left: var(--spacing-sm);
+        z-index: 2;
+      }
+      
+      .movie-carousel__wishlist--loading {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        z-index: 2;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        backdrop-filter: blur(4px);
+      }
+      
+      .movie-carousel__image--loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-neutral-100);
+        min-height: 300px;
+        
+        @include responsive('md') {
+          min-height: 250px;
+        }
+        
+        @include responsive('sm') {
+          min-height: 200px;
+        }
+      }
+      
+      .movie-carousel__info--loading {
+        padding: var(--spacing-md) 0;
+        
+        .movie-carousel__brand--loading,
+        .movie-carousel__movie-title--loading,
+        .movie-carousel__price--loading {
+          margin-bottom: var(--spacing-xs);
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        
+        .movie-carousel__movie-title--loading {
+          .skeleton:first-child {
+            margin-bottom: var(--spacing-xs);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include responsive('md') {
+  .movie-carousel--loading {
+    .movie-carousel__track--loading {
+      .movie-carousel__item--loading {
+        .movie-carousel__image--loading {
+          min-height: 250px;
+        }
+      }
+    }
+  }
+}
+
+@include responsive('sm') {
+  .movie-carousel--loading {
+    .movie-carousel__track--loading {
+      .movie-carousel__item--loading {
+        .movie-carousel__image--loading {
+          min-height: 200px;
+        }
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .skeleton__shimmer,
+  .movie-carousel__card--loading::before {
+    animation: none;
+  }
+  
+  .skeleton {
+    background: var(--color-neutral-200);
+  }
+  
+  .movie-carousel__nav-skeleton {
+    animation: none;
+  }
+}

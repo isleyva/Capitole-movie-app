@@ -1,12 +1,7 @@
-// Utility functions
-// =================
+// Movie App Functions - Minimal
+// ==============================
 
-// Convert px to rem
+// Convert px to rem (if needed for calculations)
 @function rem($pixels) {
   @return #{$pixels / 16}rem;
-}
-
-// Color functions
-@function alpha($color, $opacity) {
-  @return rgba($color, $opacity);
 }

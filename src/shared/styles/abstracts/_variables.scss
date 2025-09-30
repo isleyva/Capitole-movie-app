@@ -1,257 +1,190 @@
-// Design System Variables - Adapted from Tailwind CSS
-// ==================================================
+// Movie App Variables - OKLCH Design System
+// ==========================================
 
-// Color System using OKLCH (Modern color space)
-// ==============================================
+// OKLCH Color System (Light Theme)
+$background: oklch(1 0 0);                    // Pure white
+$foreground: oklch(0.145 0 0);                // Near black
+$card: oklch(1 0 0);                          // White
+$card-foreground: oklch(0.145 0 0);           // Near black
+$popover: oklch(1 0 0);                       // White
+$popover-foreground: oklch(0.145 0 0);        // Near black
+$primary: oklch(0.205 0 0);                   // Dark gray/black
+$primary-foreground: oklch(0.985 0 0);        // Off white
+$secondary: oklch(0.97 0 0);                  // Light gray
+$secondary-foreground: oklch(0.205 0 0);      // Dark gray
+$muted: oklch(0.97 0 0);                      // Light gray
+$muted-foreground: oklch(0.556 0 0);          // Medium gray
+$accent: oklch(0.97 0 0);                     // Light gray
+$accent-foreground: oklch(0.205 0 0);         // Dark gray
+$destructive: oklch(0.577 0.245 27.325);      // Red
+$destructive-foreground: oklch(0.577 0.245 27.325); // Red
+$border: oklch(0.922 0 0);                    // Light gray
+$input: oklch(0.922 0 0);                     // Light gray
+$ring: oklch(0.708 0 0);                      // Medium gray
 
-// Light theme colors
-$background-light: oklch(1 0 0);                    // Pure white
-$foreground-light: oklch(0.145 0 0);                // Near black
-$card-light: oklch(1 0 0);                          // White
-$card-foreground-light: oklch(0.145 0 0);           // Near black
-$popover-light: oklch(1 0 0);                       // White
-$popover-foreground-light: oklch(0.145 0 0);        // Near black
-$primary-light: oklch(0.205 0 0);                   // Dark gray/black
-$primary-foreground-light: oklch(0.985 0 0);        // Off white
-$secondary-light: oklch(0.97 0 0);                  // Light gray
-$secondary-foreground-light: oklch(0.205 0 0);      // Dark gray
-$muted-light: oklch(0.97 0 0);                      // Light gray
-$muted-foreground-light: oklch(0.556 0 0);          // Medium gray
-$accent-light: oklch(0.97 0 0);                     // Light gray
-$accent-foreground-light: oklch(0.205 0 0);         // Dark gray
-$destructive-light: oklch(0.577 0.245 27.325);      // Red
-$destructive-foreground-light: oklch(0.577 0.245 27.325); // Red
-$border-light: oklch(0.922 0 0);                    // Light gray
-$input-light: oklch(0.922 0 0);                     // Light gray
-$ring-light: oklch(0.708 0 0);                      // Medium gray
+// Chart colors
+$chart-1: oklch(0.646 0.222 41.116);         // Orange-ish
+$chart-2: oklch(0.6 0.118 184.704);          // Blue-ish
+$chart-3: oklch(0.398 0.07 227.392);         // Purple-ish
+$chart-4: oklch(0.828 0.189 84.429);         // Yellow-ish
+$chart-5: oklch(0.769 0.188 70.08);          // Green-ish
 
-// Dark theme colors
-$background-dark: oklch(0.145 0 0);                 // Near black
-$foreground-dark: oklch(0.985 0 0);                 // Off white
-$card-dark: oklch(0.145 0 0);                       // Near black
-$card-foreground-dark: oklch(0.985 0 0);            // Off white
-$popover-dark: oklch(0.145 0 0);                    // Near black
-$popover-foreground-dark: oklch(0.985 0 0);         // Off white
-$primary-dark: oklch(0.985 0 0);                    // Off white
-$primary-foreground-dark: oklch(0.205 0 0);         // Dark gray
-$secondary-dark: oklch(0.269 0 0);                  // Dark gray
-$secondary-foreground-dark: oklch(0.985 0 0);       // Off white
-$muted-dark: oklch(0.269 0 0);                      // Dark gray
-$muted-foreground-dark: oklch(0.708 0 0);           // Medium gray
-$accent-dark: oklch(0.269 0 0);                     // Dark gray
-$accent-foreground-dark: oklch(0.985 0 0);          // Off white
-$destructive-dark: oklch(0.396 0.141 25.723);       // Dark red
-$destructive-foreground-dark: oklch(0.637 0.237 25.331); // Red
-$border-dark: oklch(0.269 0 0);                     // Dark gray
-$input-dark: oklch(0.269 0 0);                      // Dark gray
-$ring-dark: oklch(0.439 0 0);                       // Dark gray
+// Application colors (mapped from OKLCH)
+$color-background: #{$background};
+$color-foreground: #{$foreground};
+$color-text: #{$foreground};
+$color-text-muted: #{$muted-foreground};
+$color-primary: #{$primary};
+$color-primary-dark: #{$primary};
+$color-secondary: #{$secondary};
+$color-danger: #{$destructive};
+$color-warning: #{$chart-4};
+$color-success: #{$chart-5};
+$color-info: #{$chart-2};
 
-// Chart colors (brand colors)
-$chart-1: oklch(0.646 0.222 41.116);               // Orange-ish
-$chart-2: oklch(0.6 0.118 184.704);                // Blue-ish
-$chart-3: oklch(0.398 0.07 227.392);               // Purple-ish
-$chart-4: oklch(0.828 0.189 84.429);               // Yellow-ish
-$chart-5: oklch(0.769 0.188 70.08);                // Green-ish
+// Legacy color mappings
+$color-white: #{$background};
+$color-black: #{$foreground};
+$color-gray-100: #{$muted};
+$color-gray-200: #{$border};
+$color-gray-300: #{$border};
+$color-gray-400: #{$muted-foreground};
+$color-gray-500: #{$muted-foreground};
+$color-gray-600: #{$foreground};
+$color-gray-700: #{$foreground};
+$color-gray-800: #{$foreground};
+$color-gray-900: #{$foreground};
 
-// Sidebar colors
-$sidebar-light: oklch(0.985 0 0);                   // Off white
-$sidebar-foreground-light: oklch(0.145 0 0);        // Near black
-$sidebar-primary-light: oklch(0.205 0 0);           // Dark gray
-$sidebar-primary-foreground-light: oklch(0.985 0 0); // Off white
-$sidebar-accent-light: oklch(0.97 0 0);             // Light gray
-$sidebar-accent-foreground-light: oklch(0.205 0 0);  // Dark gray
-$sidebar-border-light: oklch(0.922 0 0);            // Light gray
-$sidebar-ring-light: oklch(0.708 0 0);              // Medium gray
+// Typography
+$font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-$sidebar-dark: oklch(0.205 0 0);                    // Dark gray
-$sidebar-foreground-dark: oklch(0.985 0 0);         // Off white
-$sidebar-primary-dark: oklch(0.488 0.243 264.376);  // Purple
-$sidebar-primary-foreground-dark: oklch(0.985 0 0);  // Off white
-$sidebar-accent-dark: oklch(0.269 0 0);             // Dark gray
-$sidebar-accent-foreground-dark: oklch(0.985 0 0);   // Off white
-$sidebar-border-dark: oklch(0.269 0 0);             // Dark gray
-$sidebar-ring-dark: oklch(0.439 0 0);               // Dark gray
-
-// Typography System
-// =================
-
-// Font families (usando var() para permitir customización)
-$font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
-$font-mono: var(--font-geist-mono, ui-monospace, 'SF Mono', monospace);
-
-// Font sizes siguiendo escala tipográfica
-$font-size-xs: 0.75rem;      // 12px
-$font-size-sm: 0.875rem;     // 14px  
-$font-size-base: 1rem;       // 16px
-$font-size-lg: 1.125rem;     // 18px
-$font-size-xl: 1.25rem;      // 20px
-$font-size-2xl: 1.5rem;      // 24px
-$font-size-3xl: 1.875rem;    // 30px
-$font-size-4xl: 2.25rem;     // 36px
-$font-size-5xl: 3rem;        // 48px
-$font-size-6xl: 3.75rem;     // 60px
+// Font sizes
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;
+$font-size-4xl: 2.25rem;
 
 // Font weights
-$font-weight-thin: 100;
 $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
-$font-weight-black: 900;
+
+// Typography system
+$font-family-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+// Font sizes (following Tailwind-like scale)
+$text-xs: 0.75rem;      // 12px
+$text-sm: 0.875rem;     // 14px
+$text-base: 1rem;       // 16px
+$text-lg: 1.125rem;     // 18px
+$text-xl: 1.25rem;      // 20px
+$text-2xl: 1.5rem;      // 24px
+$text-3xl: 1.875rem;    // 30px
+$text-4xl: 2.25rem;     // 36px
 
 // Line heights
-$line-height-none: 1;
+$leading-none: 1;
+$leading-tight: 1.25;
+$leading-snug: 1.375;
+$leading-normal: 1.5;
+$leading-relaxed: 1.625;
+$leading-loose: 2;
+
+// Line heights
 $line-height-tight: 1.25;
-$line-height-snug: 1.375;
 $line-height-normal: 1.5;
 $line-height-relaxed: 1.625;
-$line-height-loose: 2;
 
-// Spacing
-// ========
+// Spacing system (Tailwind-compatible)
+$spacing-0: 0;
+$spacing-px: 1px;
+$spacing-0-5: 0.125rem;  // 2px
+$spacing-1: 0.25rem;     // 4px
+$spacing-1-5: 0.375rem;  // 6px
+$spacing-2: 0.5rem;      // 8px
+$spacing-2-5: 0.625rem;  // 10px
+$spacing-3: 0.75rem;     // 12px
+$spacing-3-5: 0.875rem;  // 14px
+$spacing-4: 1rem;        // 16px
+$spacing-5: 1.25rem;     // 20px
+$spacing-6: 1.5rem;      // 24px
+$spacing-7: 1.75rem;     // 28px
+$spacing-8: 2rem;        // 32px
+$spacing-9: 2.25rem;     // 36px
+$spacing-10: 2.5rem;     // 40px
+$spacing-11: 2.75rem;    // 44px
+$spacing-12: 3rem;       // 48px
+$spacing-14: 3.5rem;     // 56px
+$spacing-16: 4rem;       // 64px
+$spacing-20: 5rem;       // 80px
+$spacing-24: 6rem;       // 96px
+$spacing-28: 7rem;       // 112px
+$spacing-32: 8rem;       // 128px
 
-$spacing-xs: 0.25rem;   // 4px
-$spacing-sm: 0.5rem;    // 8px
-$spacing-md: 1rem;      // 16px
-$spacing-lg: 1.5rem;    // 24px
-$spacing-xl: 2rem;      // 32px
-$spacing-2xl: 3rem;     // 48px
-$spacing-3xl: 4rem;     // 64px
-
-// Layout
-// =======
-
-$container-max-width: 1200px;
-$container-padding: 2rem;
-
-// Grid
-$grid-columns: 12;
-$grid-gap: 1rem;
+// Legacy spacing mappings
+$spacing-xs: #{$spacing-1};      // 4px
+$spacing-sm: #{$spacing-2};      // 8px
+$spacing-md: #{$spacing-4};      // 16px
+$spacing-lg: #{$spacing-6};      // 24px
+$spacing-xl: #{$spacing-8};      // 32px
+$spacing-2xl: #{$spacing-12};    // 48px
+$spacing-3xl: #{$spacing-16};    // 64px
 
 // Breakpoints
-$breakpoint-xs: 320px;
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 992px;
-$breakpoint-xl: 1200px;
-$breakpoint-2xl: 1400px;
+$mobile: 640px;
+$tablet: 768px;
+$desktop: 1024px;
 
-// Border Radius System (basado en --radius)
-// =========================================
+// Shadow system
+$shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.05);
+$shadow-base: 0 1px 3px 0 oklch(0% 0 0 / 0.1), 0 1px 2px -1px oklch(0% 0 0 / 0.1);
+$shadow-md: 0 4px 6px -1px oklch(0% 0 0 / 0.1), 0 2px 4px -2px oklch(0% 0 0 / 0.1);
+$shadow-lg: 0 10px 15px -3px oklch(0% 0 0 / 0.1), 0 4px 6px -4px oklch(0% 0 0 / 0.1);
+$shadow-xl: 0 20px 25px -5px oklch(0% 0 0 / 0.1), 0 8px 10px -6px oklch(0% 0 0 / 0.1);
+$shadow-2xl: 0 25px 50px -12px oklch(0% 0 0 / 0.25);
+$shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.05);
 
-$radius-base: 0.625rem;      // 10px - valor base del sistema
-$radius-sm: calc(#{$radius-base} - 4px);   // ~6px
-$radius-md: calc(#{$radius-base} - 2px);   // ~8px  
-$radius-lg: $radius-base;                  // 10px
-$radius-xl: calc(#{$radius-base} + 4px);   // ~14px
-$radius-full: 9999px;
+// Movie specific
+$movie-card-aspect-ratio: 3/4;
 
-// Shadows
-// ========
+// Animation durations
+$duration-75: 75ms;
+$duration-100: 100ms;
+$duration-150: 150ms;
+$duration-200: 200ms;
+$duration-300: 300ms;
+$duration-500: 500ms;
+$duration-700: 700ms;
+$duration-1000: 1000ms;
 
-$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+// Animation easings
+$ease-linear: linear;
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Transitions
-// ============
-
 $transition-fast: 0.15s ease-in-out;
 $transition-normal: 0.3s ease-in-out;
-$transition-slow: 0.5s ease-in-out;
 
-// Z-Index Scale
-// ==============
+// Border radius system (based on --radius: 0.625rem)
+$radius-base: 0.625rem;                       // 10px - base radius
+$radius-sm: calc(#{$radius-base} - 4px);      // ~6px
+$radius-md: calc(#{$radius-base} - 2px);      // ~8px
+$radius-lg: #{$radius-base};                  // 10px
+$radius-xl: calc(#{$radius-base} + 4px);      // ~14px
+$radius-full: 9999px;
 
-$z-index-dropdown: 1000;
-$z-index-sticky: 1020;
-$z-index-fixed: 1030;
-$z-index-modal-backdrop: 1040;
-$z-index-modal: 1050;
-$z-index-popover: 1060;
-$z-index-tooltip: 1070;
+// Legacy border radius mappings
+$border-radius-sm: #{$radius-sm};
+$border-radius-md: #{$radius-md};
+$border-radius-lg: #{$radius-lg};
+$border-radius-full: #{$radius-full};
 
-// CSS Custom Properties - Design System Tokens
-// ============================================
-
-:root {
-  // Typography
-  --font-sans: #{$font-sans};
-  --font-mono: #{$font-mono};
-  
-  // Core semantic colors (light theme)
-  --background: #{$background-light};
-  --foreground: #{$foreground-light};
-  --card: #{$card-light};
-  --card-foreground: #{$card-foreground-light};
-  --popover: #{$popover-light};
-  --popover-foreground: #{$popover-foreground-light};
-  --primary: #{$primary-light};
-  --primary-foreground: #{$primary-foreground-light};
-  --secondary: #{$secondary-light};
-  --secondary-foreground: #{$secondary-foreground-light};
-  --muted: #{$muted-light};
-  --muted-foreground: #{$muted-foreground-light};
-  --accent: #{$accent-light};
-  --accent-foreground: #{$accent-foreground-light};
-  --destructive: #{$destructive-light};
-  --destructive-foreground: #{$destructive-foreground-light};
-  --border: #{$border-light};
-  --input: #{$input-light};
-  --ring: #{$ring-light};
-  
-  // Chart colors
-  --chart-1: #{$chart-1};
-  --chart-2: #{$chart-2};
-  --chart-3: #{$chart-3};
-  --chart-4: #{$chart-4};
-  --chart-5: #{$chart-5};
-  
-  // Border radius system
-  --radius: #{$radius-base};
-  
-  // Sidebar colors (light theme)
-  --sidebar: #{$sidebar-light};
-  --sidebar-foreground: #{$sidebar-foreground-light};
-  --sidebar-primary: #{$sidebar-primary-light};
-  --sidebar-primary-foreground: #{$sidebar-primary-foreground-light};
-  --sidebar-accent: #{$sidebar-accent-light};
-  --sidebar-accent-foreground: #{$sidebar-accent-foreground-light};
-  --sidebar-border: #{$sidebar-border-light};
-  --sidebar-ring: #{$sidebar-ring-light};
-}
-
-// Dark theme overrides
-.dark {
-  --background: #{$background-dark};
-  --foreground: #{$foreground-dark};
-  --card: #{$card-dark};
-  --card-foreground: #{$card-foreground-dark};
-  --popover: #{$popover-dark};
-  --popover-foreground: #{$popover-foreground-dark};
-  --primary: #{$primary-dark};
-  --primary-foreground: #{$primary-foreground-dark};
-  --secondary: #{$secondary-dark};
-  --secondary-foreground: #{$secondary-foreground-dark};
-  --muted: #{$muted-dark};
-  --muted-foreground: #{$muted-foreground-dark};
-  --accent: #{$accent-dark};
-  --accent-foreground: #{$accent-foreground-dark};
-  --destructive: #{$destructive-dark};
-  --destructive-foreground: #{$destructive-foreground-dark};
-  --border: #{$border-dark};
-  --input: #{$input-dark};
-  --ring: #{$ring-dark};
-  
-  // Sidebar dark theme
-  --sidebar: #{$sidebar-dark};
-  --sidebar-foreground: #{$sidebar-foreground-dark};
-  --sidebar-primary: #{$sidebar-primary-dark};
-  --sidebar-primary-foreground: #{$sidebar-primary-foreground-dark};
-  --sidebar-accent: #{$sidebar-accent-dark};
-  --sidebar-accent-foreground: #{$sidebar-accent-foreground-dark};
-  --sidebar-border: #{$sidebar-border-dark};
-  --sidebar-ring: #{$sidebar-ring-dark};
-}

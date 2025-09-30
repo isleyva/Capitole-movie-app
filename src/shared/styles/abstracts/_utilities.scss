@@ -1,0 +1,153 @@
+// Movie App Utilities - Essential classes for Layout
+// ===================================================
+
+@import 'variables';
+@import 'mixins';
+
+// Border radius function (used in components)
+@function radius($size: 'md') {
+  @if $size == 'sm' {
+    @return $radius-sm;
+  } @else if $size == 'md' {
+    @return $radius-md;
+  } @else if $size == 'lg' {
+    @return $radius-lg;
+  } @else {
+    @return $radius-md;
+  }
+}
+
+// Layout utility classes used in components
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gray-50 {
+  background: oklch(var(--secondary));
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+// Responsive mixins (movie app breakpoints)
+@mixin mobile {
+  @media (max-width: #{$mobile - 1px}) { @content; }
+}
+
+@mixin tablet {
+  @media (max-width: #{$tablet - 1px}) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) { @content; }
+}
+
+// Focus ring mixin
+@mixin focus-ring($color: var(--ring)) {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #{$color};
+}
+
+// Transition mixin
+@mixin transition($property: all, $duration: 150ms, $timing: ease-in-out) {
+  transition: #{$property} #{$duration} #{$timing};
+}
+
+// Button base styles mixin
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 0.875rem; // text-sm
+  font-weight: 500; // font-medium
+  @include transition(color, 150ms, ease-in-out);
+  
+  &:focus-visible {
+    @include focus-ring();
+  }
+  
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+// Text utilities
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Grid utilities
+@mixin grid-cols($cols) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+}
+
+// Container utility
+@mixin container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+  
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+  
+  @media (min-width: 1024px) {
+    max-width: 1024px;
+  }
+  
+  @media (min-width: 1280px) {
+    max-width: 1280px;
+  }
+  
+  @media (min-width: 1536px) {
+    max-width: 1536px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+// Visual utilities
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

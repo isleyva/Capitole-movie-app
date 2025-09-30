@@ -1,426 +1,131 @@
-// Base Styles - Tailwind-inspired
-// ===============================
-
-// Import variables and utilities
+/* Root element setup with OKLCH color system */
 @import '../abstracts/variables';
-@import '../abstracts/utilities';
 
-// Base reset and normalization
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: var(--border);
+:root {
+  --background: 0% 0 0;
+  --foreground: 100% 0 0;
+  --card: 0% 0 0;
+  --card-foreground: 100% 0 0;
+  --popover: 0% 0 0;
+  --popover-foreground: 100% 0 0;
+  --primary: 95.5% 0.016 264.56;
+  --primary-foreground: 12.87% 0.012 258.34;
+  --secondary: 96.65% 0.004 247.86;
+  --secondary-foreground: 13.18% 0.016 260.79;
+  --muted: 96.65% 0.004 247.86;
+  --muted-foreground: 65.44% 0.01 255.52;
+  --accent: 96.65% 0.004 247.86;
+  --accent-foreground: 13.18% 0.016 260.79;
+  --destructive: 72.2% 0.191 22.01;
+  --destructive-foreground: 95.5% 0.016 264.56;
+  --border: 91.61% 0.006 247.36;
+  --input: 91.61% 0.006 247.36;
+  --ring: 95.5% 0.016 264.56;
+  --chart-1: 72.2% 0.191 22.01;
+  --chart-2: 75.68% 0.15 66.54;
+  --chart-3: 78.36% 0.12 102.73;
+  --chart-4: 74.04% 0.167 196.38;
+  --chart-5: 70.67% 0.185 262.97;
+  --radius: 0.625rem;
 }
 
-::before,
-::after {
-  --tw-content: '';
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 3.63% 0.017 264.66;
+    --foreground: 95.5% 0.016 264.56;
+    --card: 3.63% 0.017 264.66;
+    --card-foreground: 95.5% 0.016 264.56;
+    --popover: 3.63% 0.017 264.66;
+    --popover-foreground: 95.5% 0.016 264.56;
+    --primary: 95.5% 0.016 264.56;
+    --primary-foreground: 12.87% 0.012 258.34;
+    --secondary: 13.18% 0.016 260.79;
+    --secondary-foreground: 95.5% 0.016 264.56;
+    --muted: 13.18% 0.016 260.79;
+    --muted-foreground: 65.44% 0.01 255.52;
+    --accent: 13.18% 0.016 260.79;
+    --accent-foreground: 95.5% 0.016 264.56;
+    --destructive: 62.8% 0.257 29.31;
+    --destructive-foreground: 95.5% 0.016 264.56;
+    --border: 13.18% 0.016 260.79;
+    --input: 13.18% 0.016 260.79;
+    --ring: 65.44% 0.01 255.52;
+    --chart-1: 62.8% 0.257 29.31;
+    --chart-2: 75.68% 0.15 66.54;
+    --chart-3: 78.36% 0.12 102.73;
+    --chart-4: 74.04% 0.167 196.38;
+    --chart-5: 70.67% 0.185 262.97;
+  }
 }
 
 html {
-  line-height: 1.5;
-  -webkit-text-size-adjust: 100%;
-  -moz-tab-size: 4;
-  tab-size: 4;
-  font-family: var(--font-sans);
-  font-feature-settings: normal;
-  font-variation-settings: normal;
+  line-height: $leading-normal;
+  font-family: #{$font-family-sans};
 }
 
 body {
   margin: 0;
-  line-height: inherit;
-  background-color: var(--background);
-  color: var(--foreground);
+  background: oklch(var(--background));
+  color: oklch(var(--foreground));
+  font-family: #{$font-family-sans};
+  font-size: $text-base;
+  line-height: $leading-normal;
+  transition: background-color $duration-300 $ease-out, color $duration-300 $ease-out;
 }
 
 // Focus styles
 *:focus-visible {
-  outline: 2px solid var(--ring);
+  outline: 2px solid oklch(var(--ring));
   outline-offset: 2px;
 }
 
-// Button and form elements
-button,
-input,
-optgroup,
-select,
-textarea {
+// Button reset
+button {
   font-family: inherit;
-  font-size: 100%;
-  font-weight: inherit;
+  font-size: inherit;
   line-height: inherit;
   color: inherit;
   margin: 0;
   padding: 0;
-}
-
-button,
-select {
-  text-transform: none;
-}
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-  background-color: transparent;
-  background-image: none;
+  background: transparent;
+  border: none;
   cursor: pointer;
 }
 
-:-moz-focusring {
-  outline: auto;
-}
-
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-  height: auto;
-}
-
-[type='search'] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-
-// Typography elements
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+// Typography reset
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
   font-size: inherit;
   font-weight: inherit;
-  margin: 0;
 }
 
-p {
-  margin: 0;
-}
-
-ol,
-ul,
-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-blockquote,
-dl,
-dd,
-figure,
-hr,
-pre {
-  margin: 0;
+// Media elements
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 // Links
 a {
   color: inherit;
-  text-decoration: inherit;
+  text-decoration: none;
 }
 
-// Media elements
-img,
-svg,
-video,
-canvas,
-audio,
-iframe,
-embed,
-object {
-  display: block;
-  vertical-align: middle;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 0.5rem;
 }
 
-img,
-video {
-  max-width: 100%;
-  height: auto;
+::-webkit-scrollbar-track {
+  background: oklch(var(--muted));
 }
 
-// Tables
-table {
-  text-indent: 0;
-  border-color: inherit;
-  border-collapse: collapse;
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--muted-foreground) / 0.3);
+  border-radius: $radius-full;
 }
 
-// Form elements
-fieldset {
-  margin: 0;
-  padding: 0;
-}
-
-legend {
-  padding: 0;
-}
-
-textarea {
-  resize: vertical;
-}
-
-input::placeholder,
-textarea::placeholder {
-  opacity: 1;
-  color: var(--muted-foreground);
-}
-
-// Utility classes that replicate common Tailwind patterns
-.sr-only {
-  @include sr-only;
-}
-
-.container {
-  @include container;
-}
-
-// Common layout utilities
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.space-x-4 > * + * {
-  margin-left: 1rem;
-}
-
-.space-x-6 > * + * {
-  margin-left: 1.5rem;
-}
-
-.space-x-8 > * + * {
-  margin-left: 2rem;
-}
-
-// Grid utilities
-.grid {
-  display: grid;
-}
-
-.grid-cols-1 {
-  grid-template-columns: repeat(1, 1fr);
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.gap-6 {
-  gap: 1.5rem;
-}
-
-// Responsive grid
-@include responsive('md') {
-  .md\\:grid-cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .md\\:flex {
-    display: flex;
-  }
-}
-
-@include responsive('lg') {
-  .lg\\:grid-cols-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-// Common spacing
-.p-4 {
-  padding: 1rem;
-}
-
-.p-6 {
-  padding: 1.5rem;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
-// Common styling
-.bg-white {
-  background-color: var(--card);
-}
-
-.bg-black {
-  background-color: var(--primary);
-}
-
-.text-white {
-  color: var(--primary-foreground);
-}
-
-.text-gray-600 {
-  color: var(--muted-foreground);
-}
-
-.border-b {
-  border-bottom-width: 1px;
-}
-
-.border-gray-200 {
-  border-color: var(--border);
-}
-
-.rounded-lg {
-  border-radius: radius('lg');
-}
-
-.shadow-sm {
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-}
-
-// Typography utilities
-.text-sm {
-  font-size: $font-size-sm;
-}
-
-.text-xl {
-  font-size: $font-size-xl;
-}
-
-.text-2xl {
-  font-size: $font-size-2xl;
-}
-
-.text-3xl {
-  font-size: $font-size-3xl;
-}
-
-.font-light {
-  font-weight: $font-weight-light;
-}
-
-.font-medium {
-  font-weight: $font-weight-medium;
-}
-
-.tracking-wider {
-  letter-spacing: 0.05em;
-}
-
-// Interactive states
-.hover\\:underline:hover {
-  text-decoration-line: underline;
-}
-
-// Positioning
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.-top-1 {
-  top: -0.25rem;
-}
-
-.-right-1 {
-  right: -0.25rem;
-}
-
-// Display utilities
-.hidden {
-  display: none;
-}
-
-@include responsive('md') {
-  .md\\:flex {
-    display: flex;
-  }
-}
-
-// Max width
-.max-w-7xl {
-  max-width: 80rem;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-// Borders
-.border-black {
-  border-color: var(--primary);
-}
-
-.pb-1 {
-  padding-bottom: 0.25rem;
-}
-
-// Center alignment
-.text-center {
-  text-align: center;
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground) / 0.5);
 }

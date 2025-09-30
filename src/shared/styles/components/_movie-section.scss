@@ -1,0 +1,39 @@
+// Movie Section Component
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.movie-section {
+  width: 100%;
+  padding: $spacing-xl 0;
+
+  &__container {
+    @include container;
+    
+    // Spacing between carousels
+    > div + div {
+      margin-top: $spacing-3xl;
+    }
+  }
+
+  // Loading state
+  &--loading .movie-carousel {
+    pointer-events: none;
+  }
+
+  // Responsive
+  @include desktop-up {
+    padding: $spacing-3xl 0;
+    
+    &__container > div + div {
+      margin-top: 5rem;
+    }
+  }
+
+  @include mobile-only {
+    padding: $spacing-lg 0;
+    
+    &__container > div + div {
+      margin-top: $spacing-xl;
+    }
+  }
+}

@@ -1,0 +1,212 @@
+﻿// =============================================================================
+// Movie Detail Component Styles - The Devil Wears Prada Style
+// =============================================================================
+
+.movie-detail {
+  background-color: white;
+  min-height: 100vh;
+  
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    
+    @media (min-width: 1024px) {
+      padding: 2rem;
+    }
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    
+    @media (min-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  &__image-section {
+    position: relative;
+    background-color: #f3f4f6;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+  
+  &__poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  &__brand {
+    font-size: 0.75rem;
+    color: #6b7280;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__title {
+    font-size: 1.875rem;
+    font-weight: 300;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    
+    @media (min-width: 768px) {
+      font-size: 2.25rem;
+    }
+  }
+  
+  &__info-section {
+    flex: 1;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  &__info-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  
+  &__description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 1rem;
+  }
+  
+  &__metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+  }
+  
+  &__metadata-item {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  &__metadata-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    min-width: 7rem;
+    flex-shrink: 0;
+  }
+  
+  &__metadata-value {
+    font-size: 0.875rem;
+    color: #111827;
+    font-weight: 400;
+  }
+  
+  &__wishlist-button {
+    width: 100%;
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    border: 2px solid #111827;
+    color: #111827;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    
+    &:hover {
+      background-color: #f9fafb;
+    }
+  }
+  
+  &__wishlist-icon {
+    width: 1rem;
+    height: 1rem;
+    transition: all 0.3s ease;
+    
+    &.active {
+      fill: currentColor;
+    }
+  }
+
+  // Recommendations section
+  &__recommendations {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+
+    .movie-carousel {
+      margin-bottom: 0;
+
+      &__title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        text-align: left;
+        color: #111827;
+        margin-bottom: 1.5rem;
+      }
+
+      &__container {
+        padding: 0;
+      }
+
+      &__viewport {
+        padding: 0 2rem;
+      }
+
+      &__item {
+        width: 25%; // 4 items per view on desktop
+        
+        @media (max-width: 1024px) {
+          width: 33.333333%; // 3 items on tablet
+        }
+
+        @media (max-width: 640px) {
+          width: 50%; // 2 items on mobile
+        }
+      }
+
+      &__card {
+        height: 320px; // Slightly smaller for recommendations
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1023px) {
+  .movie-detail {
+    &__container {
+      padding: 1rem;
+    }
+    
+    &__grid {
+      gap: 1.5rem;
+    }
+    
+    &__title {
+      font-size: 1.75rem;
+    }
+  }
+}
