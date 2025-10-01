@@ -30,7 +30,7 @@ function App() {
   return (
     <ErrorBoundary>
       <WishlistProvider>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loading message="Loading application..." />}>
           <Layout>
             <Routes>
               <Route path="/" element={<MovieCatalogRoute />} />
