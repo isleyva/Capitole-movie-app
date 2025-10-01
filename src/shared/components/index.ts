@@ -2,4 +2,6 @@
 export * from './ui'
 export * from './layout'
 export * from './movieDisplay'
+export * from './MovieDetailError'
+export * from './MovieDetailNotFound'
 

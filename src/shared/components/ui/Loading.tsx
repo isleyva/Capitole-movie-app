@@ -1,34 +1,21 @@
-import { memo, useMemo } from 'react'
+import { memo } from "react";
 
 interface LoadingProps {
-  message?: string
-  size?: 'sm' | 'md' | 'lg'
-  className?: string
+  message?: string;
+  size?: "sm" | "md" | "lg";
+  className?: string;
 }
 
-export const Loading = memo<LoadingProps>(({ 
-  message = 'Loading...', 
-  size = 'md',
-  className = '' 
-}) => {
-  const overlayClassName = useMemo(() => 
-    `loading-overlay ${className}`, 
-    [className]
-  );
-
-  const spinnerClassName = useMemo(() => 
-    `spinner spinner--${size}`, 
-    [size]
-  );
-
+export const Loading = memo<LoadingProps>(({ message = "Loading..." }) => {
   return (
-    <div className={overlayClassName}>
-      <div className="flex flex-col items-center gap-4">
-        <div className={spinnerClassName}></div>
-        {message && (
-          <p className="text-sm text-muted-foreground">{message}</p>
-        )}
+    <div className="movie-detail__container">
+      <div className="movie-detail__state-container">
+        <div className="movie-detail__loading">
+          <div className="movie-detail__loading-spinner"></div>
+          <h2 className="movie-detail__loading-title">LOADING</h2>
+          <p className="movie-detail__loading-message">{message}</p>
+        </div>
       </div>
     </div>
-  )
-})
+  );
+});
