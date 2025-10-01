@@ -1,4 +1,5 @@
 import { memo, useMemo, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { useWishlist } from "@/ApplicationLayer/providers/WishlistProvider";
 import { Movie } from "@/shared/types/commonTypes";
@@ -9,6 +10,8 @@ type MovieDetailProps = {
 };
 
 export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("c") || undefined; 
   const { addMovie, removeMovie, isInWishlist } = useWishlist();
 
   const isInWishList = useMemo(
@@ -24,8 +27,10 @@ export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
     }
   }, [isInWishList, removeMovie, addMovie, movie.id]);
 
+  const variantClass = category ? `movie-detail movie-detail--${category}` : "movie-detail";
+
   return (
-    <div className="movie-detail">
+    <div className={variantClass} data-category={category || undefined}>
       <div className="movie-detail__container">
         <div className="movie-detail__grid">
           <div className="movie-detail__image-section">
@@ -110,6 +115,7 @@ export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
               title="YOU MIGHT ALSO LIKE"
               movies={movie.recommendations}
               isLoading={false}
+              category="recommendation"
             />
           ) : (
             <div className="movie-detail__no-recommendations">

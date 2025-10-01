@@ -10,10 +10,11 @@ type MovieCardProps = {
   isPlaceholder?: boolean;
   showWishlist?: boolean;
   className?: string;
+  category?: string;
 };
 
 export const MovieCard = memo<MovieCardProps>(
-  ({ movie, isLoading = false, isPlaceholder = false, className }) => {
+  ({ movie, isLoading = false, isPlaceholder = false, className, category }) => {
     const navigate = useNavigate();
     const { addMovie, removeMovie, isInWishlist } = useWishlist();
 
@@ -24,9 +25,12 @@ export const MovieCard = memo<MovieCardProps>(
 
     const handleCardClick = useCallback(() => {
       if (!isLoading && !isPlaceholder) {
-        navigate(`/movie/${movie.id}`);
+        const url = category
+          ? `/movie/${movie.id}?c=${encodeURIComponent(category)}`
+          : `/movie/${movie.id}`;
+        navigate(url);
       }
-    }, [navigate, movie.id, isLoading, isPlaceholder]);
+    }, [navigate, movie.id, isLoading, isPlaceholder, category]);
 
     const handleWishlistToggle = useCallback(
       (e: React.MouseEvent) => {

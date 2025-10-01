@@ -8,10 +8,11 @@ type MovieCarouselProps = {
   title: string;
   movies: Movie[];
   isLoading?: boolean;
+  category?: string;
 };
 
 export const MovieCarousel = memo<MovieCarouselProps>(
-  ({ title, movies, isLoading = false }) => {
+  ({ title, movies, isLoading = false, category }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsPerView, setItemsPerView] = useState(5);
 
@@ -129,6 +130,7 @@ export const MovieCarousel = memo<MovieCarouselProps>(
                       movie={movie}
                       isLoading={false}
                       isPlaceholder={movies.length === 0}
+                      category={category}
                     />
                   ))}
             </div>

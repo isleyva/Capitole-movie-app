@@ -35,6 +35,7 @@ export const MovieSections = memo(() => {
                 title={section.title}
                 movies={section.movies}
                 isLoading={false}
+                category={section.id}
               />
             </div>
           ))

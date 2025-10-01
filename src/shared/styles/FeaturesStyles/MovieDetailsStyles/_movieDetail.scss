@@ -1,6 +1,7 @@
 @import "../../StyleUtils/variables";
 
 .movie-detail {
+  --detail-accent: oklch(0.145 0 0);
   background: oklch(1 0 0);
   min-height: 100vh;
   padding: $spacing-8 0;
@@ -141,8 +142,8 @@
     justify-content: center;
     gap: $spacing-2;
     background: transparent;
-    border: 1px solid oklch(0.145 0 0);
-    color: oklch(0.145 0 0);
+    border: 1px solid var(--detail-accent);
+    color: var(--detail-accent);
     padding: $spacing-4 $spacing-8;
     font-size: $text-xs;
     font-weight: $font-weight-medium;
@@ -155,14 +156,14 @@
     min-height: 48px;
 
     &:hover {
-      background: oklch(0.145 0 0);
+      background: var(--detail-accent);
       color: oklch(1 0 0);
 
       .movie-detail__wishlist-icon {
         color: oklch(1 0 0);
 
         &.active {
-          color: oklch(0.65 0.25 29.23);
+          color: oklch(1 0 0);
         }
       }
     }
@@ -184,7 +185,7 @@
 
     &.active {
       fill: currentColor;
-      color: oklch(0.55 0.22 29.23);
+      color: var(--detail-accent);
     }
   }
 
@@ -407,6 +408,45 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+  // Category variants (simple, harmonious changes)
+  &--popular {
+    --detail-accent: oklch(0.55 0.22 29.23); // warm accent
+    .movie-detail__title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: $font-weight-light;
+    }
+  }
+  &--top-rated {
+    // Distinct golden tone for top rated
+    --detail-accent: oklch(0.78 0.14 85); // gold-like
+    .movie-detail__title {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-weight: $font-weight-medium;
+      letter-spacing: 0.015em;
+    }
+  }
+  &--upcoming {
+    // subtle cooler accent while keeping palette harmony
+    --detail-accent: oklch(0.55 0.08 250);
+    .movie-detail__title {
+      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      font-weight: $font-weight-light;
+      font-style: italic;
+    }
+  }
+  &--recommendation {
+    // Variant when arriving from a recommendations carousel
+    --detail-accent: oklch(0.7 0.15 310); // soft violet accent
+    .movie-detail__title {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-weight: $font-weight-semibold;
+      letter-spacing: 0.02em;
+    }
+    .movie-detail__brand {
+      letter-spacing: 0.18em;
     }
   }
 }
