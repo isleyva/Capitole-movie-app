@@ -11,17 +11,12 @@ const port = process.env.PORT || 3000;
   const app = express();
   let vite: any;
 
-  if (!isProd) {
-    // DEV: Vite middleware gives HMR + on‑the‑fly transforms
-    vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "custom",
-    });
-    app.use(vite.middlewares);
-  } else {
-    // PROD: Serve prebuilt client assets (HTML is still SSR injected)
-    app.use(express.static("dist/client", { index: false, maxAge: "1h" }));
-  }
+  // DEV: Vite middleware gives HMR + on‑the‑fly transforms
+  vite = await createViteServer({
+    server: { middlewareMode: true },
+    appType: "custom",
+  });
+  app.use(vite.middlewares);
 
   // Catch‑all GET for HTML navigation
   app.get("*", async (req, res, next) => {
@@ -69,9 +64,9 @@ const port = process.env.PORT || 3000;
       const [head, tail] = template.split("<!--ssr-outlet-->");
 
       // Dynamically load SSR entry (dev: transform, prod: bundled)
-      const mod = !isProd
-        ? await vite.ssrLoadModule("/src/ApplicationLayer/entry-server.tsx")
-        : await import(path.resolve("dist/server/entry-server.js"));
+      const mod = await vite.ssrLoadModule(
+        "/src/ApplicationLayer/entry-server.tsx"
+      );
 
       if (typeof mod.streamRender !== "function") {
         throw new Error("streamRender export not found in entry-server");
