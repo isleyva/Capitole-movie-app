@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Capitole Movie App
 
-Currently, two official plugins are available:
+Browse, discover and save movies from TMDB with Server‑Side Rendered (streaming) React 19, Vite and Express.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+</div>
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Data Flow & SSR Pipeline
 
-## Expanding the ESLint configuration
+1. Incoming GET request hits Express catch‑all.
+2. HTML template is loaded and split at `<!--ssr-outlet-->`.
+3. Server dynamically imports `entry-server.tsx` (transformed via Vite in dev).
+4. `streamRender` sets up React tree (StaticRouter, QueryClientProvider, App) and uses `renderToPipeableStream`.
+5. Shell is streamed to client while React continues rendering; placeholders / suspense boundaries hydrate progressively.
+6. Client bundles hydrate via `entry-client.tsx` using `hydrateRoot`.
+7. Subsequent navigation handled entirely client-side (SPA behaviour).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Data transformation:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Raw TMDB objects are converted to internal `Movie` objects (`convertTMDBToMovie`) ensuring single formatting responsibility.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js 18+ (recommended) – supports native fetch & modern ESM.
+- TMDB account for an API Read Access Token (v4).
+
+### Install
+
+```
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development (with HMR + SSR)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+npm run dev
+```
+
+Visit: http://localhost:3000
+
+### Production build & run
+
+SSR implemetation is not adapted to prod enviroments!!
+
+## Environment Variables
+
+Create a `.env` file 
+
+```
+VITE_TMDB_BASE_URL=https://api.themoviedb.org/3
+VITE_TMDB_ACCESS_TOKEN=YOUR_TMDB_V4_READ_ACCESS_TOKEN
+```
+
+## Available NPM Scripts
+
+| Script         | Description                                                |
+| -------------- | ---------------------------------------------------------- |
+| `dev`          | Starts Express + Vite in middleware mode with SSR + HMR    |
+| `build`        | Builds client + server outputs (calls the two sub-scripts) |
+| `build:client` | Vite client build to `dist/client`                         |
+| `build:server` | Server (SSR) entry build to `dist/server`                  |
+| `preview`      | Runs production server using built artifacts               |
+| `lint`         | Runs ESLint over the project                               |
+| `type-check`   | Runs TypeScript compiler in noEmit mode                    |
+
+Development Notes & Decisions
+
+- Streaming SSR chosen for faster TTFB & progressive hydration.
+- Wishlist intentionally ephemeral (in-memory) – persistence would require localStorage, IndexedDB or backend endpoint.
+- Limited to first 10 movies per section for concise UI; can be extended with pagination or infinite scroll.
+- SCSS uses partials grouped by concern (`BaseStyleConfig`, `FeaturesStyles`, `LayoutStyles`, `StyleUtils`).
+- Path aliases reduce relative import noise and reinforce architecture boundaries.
+
+
+### Quick Start (TL;DR)
+
+```
+git clone <repo>
+cd capitole-movie-app
+npm install
+cp  .env   # (create and fill values if you add an example file)
+npm run dev
+```
+
+Open http://localhost:3000
