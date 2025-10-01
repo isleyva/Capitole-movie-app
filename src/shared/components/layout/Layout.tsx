@@ -1,45 +1,43 @@
-import { memo, useCallback, useMemo, ReactNode } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { useWishlist } from '@/ApplicationLayer/providers/WishlistProvider'
-import { Header } from './Header'
+import { memo, useCallback, useMemo, ReactNode } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useWishlist } from "@/ApplicationLayer/providers/WishlistProvider";
+import { Header } from "./Header";
 
 interface LayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const Layout = memo<LayoutProps>(({ children }) => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { totalMovies } = useWishlist()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { totalMovies } = useWishlist();
 
   const getCurrentView = useCallback((): "home" | "detail" | "wishlist" => {
-    if (location.pathname === '/') return 'home'
-    if (location.pathname === '/favorites') return 'wishlist'
-    if (location.pathname.startsWith('/movie/')) return 'detail'
-    return 'home'
-  }, [location.pathname])
+    if (location.pathname === "/") return "home";
+    if (location.pathname === "/favorites") return "wishlist";
+    if (location.pathname.startsWith("/movie/")) return "detail";
+    return "home";
+  }, [location.pathname]);
 
   const handleHomeClick = useCallback(() => {
-    navigate('/')
-  }, [navigate])
+    navigate("/");
+  }, [navigate]);
 
   const handleWishListClick = useCallback(() => {
-    navigate('/favorites')
-  }, [navigate])
+    navigate("/favorites");
+  }, [navigate]);
 
-  const currentView = useMemo(() => getCurrentView(), [getCurrentView])
+  const currentView = useMemo(() => getCurrentView(), [getCurrentView]);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header 
+      <Header
         onHomeClick={handleHomeClick}
         onWishListClick={handleWishListClick}
         wishListCount={totalMovies}
         currentView={currentView}
       />
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
     </div>
-  )
-})
+  );
+});

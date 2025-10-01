@@ -6,13 +6,13 @@ import { MovieCarousel } from "@/shared/components";
 
 type MovieDetailProps = {
   movie: Movie;
-}
+};
 
 export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
   const { addMovie, removeMovie, isInWishlist } = useWishlist();
-  
-  const isInWishList = useMemo(() => 
-    isInWishlist(movie.id), 
+
+  const isInWishList = useMemo(
+    () => isInWishlist(movie.id),
     [isInWishlist, movie.id]
   );
 
@@ -47,7 +47,9 @@ export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
 
                 <div className="movie-detail__metadata">
                   <div className="movie-detail__metadata-item">
-                    <span className="movie-detail__metadata-label">Studio:</span>
+                    <span className="movie-detail__metadata-label">
+                      Studio:
+                    </span>
                     <span className="movie-detail__metadata-value">
                       {movie.brand}
                     </span>
@@ -59,7 +61,9 @@ export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
                     </span>
                   </div>
                   <div className="movie-detail__metadata-item">
-                    <span className="movie-detail__metadata-label">Rating:</span>
+                    <span className="movie-detail__metadata-label">
+                      Rating:
+                    </span>
                     <span className="movie-detail__metadata-value">
                       ★ {movie.vote_average}
                     </span>
@@ -73,7 +77,9 @@ export const MovieDetail = memo<MovieDetailProps>(({ movie }) => {
                     </span>
                   </div>
                   <div className="movie-detail__metadata-item">
-                    <span className="movie-detail__metadata-label">Revenue:</span>
+                    <span className="movie-detail__metadata-label">
+                      Revenue:
+                    </span>
                     <span className="movie-detail__metadata-value">
                       {movie.revenue}
                     </span>

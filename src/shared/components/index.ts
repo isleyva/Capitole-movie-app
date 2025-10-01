@@ -1,7 +1,6 @@
 // Re-export all components from their respective modules
-export * from './ui'
-export * from './layout'
-export * from './movieDisplay'
-export * from './MovieDetailError'
-export * from './MovieDetailNotFound'
-
+export * from "./ui";
+export * from "./layout";
+export * from "./movieDisplay";
+export * from "./MovieDetailError";
+export * from "./MovieDetailNotFound";

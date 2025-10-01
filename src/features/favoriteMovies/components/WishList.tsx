@@ -28,7 +28,12 @@ export const WishList = memo(() => {
     <div className="wishlist__grid" data-testid="wishlist-grid">
       {movies.map((movie) => (
         <div key={movie.id} className="wishlist__card-wrapper">
-          <MovieCard className="movie-card" movie={movie} isLoading={false} isPlaceholder={false} />
+          <MovieCard
+            className="movie-card"
+            movie={movie}
+            isLoading={false}
+            isPlaceholder={false}
+          />
         </div>
       ))}
     </div>

@@ -43,5 +43,3 @@ export class TMDBService {
     return this.request<T>(endpoint);
   }
 }
-
-

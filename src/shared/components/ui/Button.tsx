@@ -5,7 +5,6 @@ import "../../styles/commonComponents/_button.scss";
 export interface ButtonProps extends ComponentProps<"button"> {
   variant?: "default" | "ghost";
   size?: "icon";
-
 }
 
 function cn(...classes: (string | undefined | null | false)[]): string {
@@ -13,12 +12,7 @@ function cn(...classes: (string | undefined | null | false)[]): string {
 }
 
 const Button = memo<ButtonProps>(
-  ({
-    className,
-    variant = "default",
-    size = "default",
-    ...props
-  }) => {
+  ({ className, variant = "default", size = "default", ...props }) => {
     const buttonClasses = useMemo(
       () =>
         cn(
