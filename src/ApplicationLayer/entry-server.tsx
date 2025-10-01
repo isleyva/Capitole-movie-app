@@ -1,10 +1,7 @@
-// Ultra simple server-side rendering function
-
-import { renderToPipeableStream } from "react-dom/server";
-import { StrictMode } from "react";
-import { StaticRouter } from "react-router-dom/server";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PassThrough } from "node:stream";
+import { StrictMode } from "react";
+import { renderToPipeableStream } from "react-dom/server";
+import { StaticRouter } from "react-router-dom/server";
 import App from "./App";
 
 interface RenderOptions {
@@ -14,22 +11,14 @@ interface RenderOptions {
 }
 
 export function streamRender({ url, onShellReady, onError }: RenderOptions) {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: { staleTime: 60_000, retry: false },
-    },
-  });
-
   let didError = false;
   const abortDelay = 15000;
 
   const pipeable = renderToPipeableStream(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <StaticRouter location={url}>
-          <App />
-        </StaticRouter>
-      </QueryClientProvider>
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
     </StrictMode>,
     {
       onShellReady() {
