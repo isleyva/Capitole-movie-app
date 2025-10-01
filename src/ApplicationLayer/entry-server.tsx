@@ -10,15 +10,10 @@ import App from "./App";
 interface RenderOptions {
   url: string;
   onShellReady: (stream: NodeJS.ReadableStream) => void;
-  onAllReady: () => void;
   onError: (err: unknown) => void;
 }
 
-export function streamRender({
-  url,
-  onShellReady,
-  onError,
-}: RenderOptions) {
+export function streamRender({ url, onShellReady, onError }: RenderOptions) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: { staleTime: 60_000, retry: false },
